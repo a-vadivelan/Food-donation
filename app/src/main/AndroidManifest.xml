@@ -4,11 +4,26 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/food_bank_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDonation">
+        <activity
+            android:name=".options"
+            android:exported="true" />
+        <activity
+            android:name=".donate"
+            android:exported="true" />
+        <activity
+            android:name=".primary"
+            android:exported="true" />
+        <activity
+            android:name=".otp"
+            android:exported="true" />
+        <activity
+            android:name=".signin"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

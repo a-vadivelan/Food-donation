@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="districts">
+        <item>Select District</item>
+        <item>Ariyalur</item>
+        <item>Chengalpet</item>
+        <item>Chennai</item>
+        <item>Coimbatore</item>
+        <item>Cuddalore</item>
+        <item>Dharmapuri</item>
+        <item>Dindugal</item>
+        <item>Erode</item>
+        <item>Kallakurichi</item>
+        <item>Kanchipuram</item>
+        <item>Kanniyakumari</item>
+        <item>karaikaal</item>
+        <item>Karur</item>
+        <item>Krishnagiri</item>
+        <item>Madurai</item>
+        <item>Mahi</item>
+        <item>Mayiladudurai</item>
+        <item>Nagapattinam</item>
+        <item>Namakkal</item>
+        <item>Nilgiris</item>
+        <item>Perambalur</item>
+        <item>Pudhucheri</item>
+        <item>Pudukkottai</item>
+        <item>Ramanathapuram</item>
+        <item>Ranipet</item>
+        <item>Salem</item>
+        <item>Sivaganga</item>
+        <item>Tenkasi</item>
+        <item>Thanjavur</item>
+        <item>Theni</item>
+        <item>Tiruvallur</item>
+        <item>Tiruvarur</item>
+        <item>Tutucorin</item>
+        <item>Tiruchirappalli</item>
+        <item>Thirunelveli</item>
+        <item>Tirupathur</item>
+        <item>Tiruppur</item>
+        <item>Tiruvannamalai</item>
+        <item>Vellore</item>
+        <item>Villupuram</item>
+        <item>Virudhunagar</item>
+        <item>Yaanam</item>
+    </string-array>
+    <string-array name="ariyalur">
+        <item>Select City</item>
+        <item>Udaiyarpalayam</item>
+        <item>Thirumaanur</item>
+        <item>Tha. Pazhur</item>
+        <item>Sendurai</item>
+        <item>Jeyangondaan</item>
+        <item>Ariyalu</item>
+        <item>Andimadam</item>
+    </string-array>
+    <string-array name="chengalpet">
+        <item>Select City</item>
+        <item>Vandalur</item>
+        <item>Thirupoorur</item>
+        <item>Thirukazhungkundram</item>
+        <item>Thambaram</item>
+        <item>Palavaram</item>
+        <item>Mathuraanthagam</item>
+        <item>Seiyur</item>
+        <item>Chengalpet</item>
+    </string-array>
+    <string-array name="chennai">
+        <item>Select City</item>
+        <item>Vengaivasal</item>
+        <item>Velaseri</item>
+        <item>Thandaiyarpet</item>
+        <item>Thiruvotriyur</item>
+        <item>Sembiyam</item>
+        <item>St Thomas Mount</item>
+        <item>Purasaivaakam</item>
+        <item>Pillaipaakam</item>
+        <item>Perungud</item>
+        <item>Perampur</item>
+        <item>Orakadam</item>
+        <item>Mayilapur</item>
+        <item>Maraimalai nagar</item>
+        <item>Manapaakam</item>
+        <item>Mampalam</item>
+        <item>Madipakam</item>
+        <item>Kulathur</item>
+        <item>Irungkaathukkotai</item>
+        <item>Guindy</item>
+        <item>Ezhumpur</item>
+        <item>Chennai</item>
+        <item>Settupattu</item>
+        <item>Ayanavaram</item>
+        <item>Aminjikarai</item>
+        <item>Alapakam</item>
+        <item>Abhiramapuram</item>
+    </string-array>
+    <string-array name="coimbatore">
+        <item>Select City</item>
+        <item>Valpaarai</item>
+        <item>vadavalli</item>
+        <item>Down hall</item>
+        <item>Thudiyalur</item>
+        <item>Thenkarai</item>
+        <item>Sulur</item>
+        <item>Saravanampatti</item>
+        <item>Saibaba colony</item>
+        <item>Race house</item>
+        <item>RS puram</item>
+        <item>Pollachi</item>
+        <item>Perur</item>
+        <item>Periyanayakkanpalayam</item>
+        <item>Pelamedu</item>
+        <item>Mettupalayam</item>
+        <item>Mangalam</item>
+        <item>Malumichampatti</item>
+        <item>Mathukarai</item>
+        <item>Kuniyamuthur</item>
+        <item>Kinathukadavu</item>
+        <item>karamadai</item>
+        <item>Kaalapatti</item>
+        <item>Irugur</item>
+        <item>Goundampalayam</item>
+        <item>Gandhipuram</item>
+        <item>Coimbatore</item>
+        <item>Settipalayam</item>
+        <item>Annur</item>
+        <item>Aanaimalai</item>
+    </string-array>
+    <string-array name="cuddalore">
+        <item>Select City</item>
+        <item>Viruthachalam</item>
+        <item>Thitakudi</item>
+        <item>Parangipet</item>
+        <item>Panrutti</item>
+        <item>Nallur</item>
+        <item>Mangalur</item>
+        <item>Kurinjipaadi</item>
+        <item>Kumaraachi</item>
+        <item>Kirappalayam</item>
+        <item>Kaattumannarkovil</item>
+        <item>kammapuram</item>
+        <item>Cuddalore</item>
+        <item>Chithamparam</item>
+        <item>Puvanagiri</item>
+        <item>Annakiramam</item>
+    </string-array>
+    <string-array name="dharmapuri">
+        <item>Select City</item>
+        <item>Pennagaram</item>
+        <item>Paapirettipatti</item>
+        <item>Papparapatti</item>
+        <item>Balakodu</item>
+        <item>Nallampalli</item>
+        <item>Mandaragalli</item>
+        <item>kaarimangalam</item>
+        <item>Kambainallur</item>
+        <item>Kadathur</item>
+        <item>Arur</item>
+        <item>Dharamapuri</item>
+        <item>Bommidi</item>
+    </string-array>
+    <string-array name="dindugal">
+        <item>Select City</item>
+        <item>Vedanchandur</item>
+        <item>Pazhani</item>
+        <item>Ottanchithiram</item>
+        <item>Nilakkottai</item>
+        <item>Nattham</item>
+        <item>Kodaikanal</item>
+        <item>Gandhikiramam</item>
+        <item>Dindugal</item>
+        <item>Chinaalapatti</item>
+        <item>Vatthalakundu</item>
+        <item>Aathur</item>
+    </string-array>
+    <string-array name="erode">
+        <item>Select City</item>
+        <item>Vijayapuri</item>
+        <item>Thaalavadi</item>
+        <item>Satthiyamangalam</item>
+        <item>Perundurai</item>
+        <item>Nambiyur</item>
+        <item>Modakkurinji</item>
+        <item>Kundadam</item>
+        <item>Kodumudi</item>
+        <item>Gobichettipalayam</item>
+        <item>Erode</item>
+        <item>Chenimala</item>
+        <item>Pavani</item>
+        <item>Atthaani</item>
+        <item>Anthiyur</item>
+        <item>Ammappet</item>
+    </string-array>
+    <string-array name="kallakurichi">
+        <item>Select City</item>
+        <item>Ulundurpet</item>
+        <item>Thiyakadurkam</item>
+        <item>Thirukovilur</item>
+        <item>Sankarapuram</item>
+        <item>Kalvarayanmalai</item>
+        <item>kallakurichi</item>
+        <item>Chinnasalem</item>
+    </string-array>
+    <string-array name="kanchipuram">
+        <item>Select City</item>
+        <item>Valajapati</item>
+        <item>Utharamerur</item>
+        <item>Sriperumputhur</item>
+        <item>Solinganallur</item>
+        <item>Lathur</item>
+        <item>Kundrathur</item>
+        <item>Kaathaankulathur</item>
+        <item>Kanchipuram</item>
+        <item>Chittamur</item>
+        <item>Aalandhur</item>
+        <item>Accharapakam</item>
+    </string-array>
+    <string-array name="kanniyakumari">
+        <item>Select City</item>
+        <item>Vilavankodu</item>
+        <item>Thakkalai</item>
+        <item>Thovalai</item>
+        <item>Rajakkamangalam</item>
+        <item>Pathmanaamapuram</item>
+        <item>Nagarkovil</item>
+        <item>Munchirai</item>
+        <item>Melpuram</item>
+        <item>Marthaandam</item>
+        <item>Kuzhithurai</item>
+        <item>Kurunthankodu</item>
+        <item>Koonam</item>
+        <item>Karungal</item>
+        <item>Kanniyakumari</item>
+        <item>kalkulam</item>
+        <item>Kolachal</item>
+        <item>Agasthisvaram</item>
+    </string-array>
+    <string-array name="karur">
+        <item>Select City</item>
+        <item>Uppidamangalam</item>
+        <item>Thoogaimalai</item>
+        <item>Thaanthooni</item>
+        <item>S Vellalapatti</item>
+        <item>Punjaipugalur</item>
+        <item>Pazhaiya Jeyankondam</item>
+        <item>Nangavaram</item>
+        <item>Maruthur</item>
+        <item>Manmangalam</item>
+        <item>Kulithalai</item>
+        <item>Krishrayapuram</item>
+        <item>Karur</item>
+        <item>Kaagithapuram</item>
+        <item>Kadavur</item>
+        <item>K Paramathi</item>
+        <item>Chinatharapuram</item>
+        <item>Aathur</item>
+        <item>Aravakurichi</item>
+    </string-array>
+    <string-array name="krishnagiri">
+        <item>Select City</item>
+        <item>Veppanapalli</item>
+        <item>Uttangarai</item>
+        <item>Sulagiri</item>
+        <item>Poochampalli</item>
+        <item>Maathur</item>
+        <item>Krishnagiri</item>
+        <item>Kaaveripattinam</item>
+        <item>Osur</item>
+        <item>Thenkanikkottai</item>
+        <item>Pargur</item>
+    </string-array>
+    <string-array name="madurai">
+        <item>Select City</item>
+        <item>Villapuram</item>
+        <item>vaadipatti</item>
+        <item>Usilampatti</item>
+        <item>Urangaanpatti</item>
+        <item>Thirumangalam</item>
+        <item>Thiruparangundram</item>
+        <item>Thirumoogur</item>
+        <item>Theppakulam</item>
+        <item>T Kallupatti</item>
+        <item>Chimmakkal</item>
+        <item>Sellur</item>
+        <item>Peraiyur</item>
+        <item>Pasumalai</item>
+        <item>Otthakadai</item>
+        <item>Nilaiyur</item>
+        <item>Melur</item>
+        <item>Madurai South</item>
+        <item>Madurai North</item>
+        <item>Madurai</item>
+        <item>Kappalur</item>
+        <item>K Puthur</item>
+        <item>Anuppanadi</item>
+    </string-array>
+    <string-array name="mayiladudurai">
+        <item>Select City</item>
+        <item>Tharangampaadi</item>
+        <item>Serkaazhi</item>
+        <item>Mayiladudurai</item>
+        <item>Kutthalam</item>
+    </string-array>
+    <string-array name="nagapattinam">
+        <item>Select City</item>
+        <item>Velangkanni</item>
+        <item>Vetharaniyam</item>
+        <item>Vanduvaancheri</item>
+        <item>vadamalai</item>
+        <item>Thirukuvalai</item>
+        <item>Thanikkotthagam</item>
+        <item>Thaikkal</item>
+        <item>Narimanam</item>
+        <item>Naagur</item>
+        <item>Nagapattinam</item>
+        <item>Manakkaadu</item>
+        <item>Keezhivelur</item>
+    </string-array>
+    <string-array name="namakkal">
+        <item>Select City</item>
+        <item>Vennanthur</item>
+        <item>Thiruchenkodu</item>
+        <item>Senthamangalam</item>
+        <item>Rasipuram</item>
+        <item>Puthuchattiram</item>
+        <item>Paramatthi Vellore</item>
+        <item>Pallipalayam</item>
+        <item>Namakkal</item>
+        <item>Namagirippet</item>
+        <item>Moganur</item>
+        <item>Malla Samuthiram</item>
+        <item>Kumarapalayam</item>
+        <item>Kolli malai</item>
+        <item>Kabilar malai</item>
+        <item>Erumappatti</item>
+    </string-array>
+    <string-array name="perambalur">
+        <item>Select City</item>
+        <item>Veppur</item>
+        <item>Veppanthattai</item>
+        <item>Udumbiyaam</item>
+        <item>Pulaampati</item>
+        <item>Perambalur</item>
+        <item>Naranamangalam</item>
+        <item>Lappaikudikaadu</item>
+        <item>Kurumbalur</item>
+        <item>Kunnam</item>
+        <item>Elampalur</item>
+        <item>Arumpaavur</item>
+        <item>Alatthur</item>
+    </string-array>
+    <string-array name="puthukkottai">
+        <item>Select City</item>
+        <item>Vellanoor</item>
+        <item>Thiruvarangulam</item>
+        <item>Thirumayam</item>
+        <item>Puthukkottai</item>
+        <item>Ponnamaraavathi</item>
+        <item>Manamelkudi</item>
+        <item>Macchavaadi</item>
+        <item>kulatthur</item>
+        <item>Surambakkudi</item>
+        <item>Iluppur</item>
+        <item>Kanthavarkkottai</item>
+        <item>Aavudaiyaarkovil</item>
+        <item>Arimazham</item>
+        <item>Aranthangi</item>
+        <item>Annavaasal</item>
+        <item>Aalangudi</item>
+    </string-array>
+    <string-array name="ramnad">
+        <item>Select City</item>
+        <item>Vazhinokkam</item>
+        <item>Vazhanthaaravai</item>
+        <item>Thiruvadanai</item>
+        <item>Thelicchatthanallur</item>
+        <item>Rameswaram</item>
+        <item>Ramnad</item>
+        <item>RS Mangalam</item>
+        <item>Paramakudi</item>
+        <item>Paamboor</item>
+        <item>Nenmeeni</item>
+        <item>Nainaarkovil</item>
+        <item>Mutukulathur</item>
+        <item>Kizhakkarai</item>
+        <item>Kamuthi</item>
+        <item>Kamuthakkudi</item>
+        <item>kadaladi</item>
+        <item>Poogaloor</item>
+        <item>Acchundanvayal</item>
+    </string-array>
+    <string-array name="ranipet">
+        <item>Select City</item>
+        <item>Valajapet</item>
+        <item>Ranipet</item>
+        <item>Nemili</item>
+        <item>Arcod</item>
+        <item>Arakkoonam</item>
+    </string-array>
+    <string-array name="salem">
+        <item>Select City</item>
+        <item>Ercod</item>
+        <item>Verakanur</item>
+        <item>Vaazhappaadi</item>
+        <item>Udaiyampatti</item>
+        <item>Sezhansaavadi</item>
+        <item>Sangagiri</item>
+        <item>Salem</item>
+        <item>Puthusampalli</item>
+        <item>Oomaloor</item>
+        <item>Nilavarapatti</item>
+        <item>Mettur</item>
+        <item>Kakapalayam</item>
+        <item>Kadaiyaampatti</item>
+        <item>Johnsonpet</item>
+        <item>Jalakandapuram</item>
+        <item>Kanganavalli</item>
+        <item>Edappadi</item>
+        <item>Aathur</item>
+    </string-array>
+    <string-array name="sivaganga">
+        <item>Select City</item>
+        <item>Udaikulam</item>
+        <item>Thiruppuvanam</item>
+        <item>Thirupatthur</item>
+        <item>Sivaganga</item>
+        <item>Singampunari</item>
+        <item>Sozhalavanthaan</item>
+        <item>Sanmuganathapuram</item>
+        <item>Saakkottai</item>
+        <item>S Puthur</item>
+        <item>Muthupatti</item>
+        <item>Manamadurai</item>
+        <item>Kirunkapet</item>
+        <item>karaikudi</item>
+        <item>Kannankudi</item>
+        <item>Kallal</item>
+        <item>Kaalaiyarkovil</item>
+        <item>Ilayankudi</item>
+        <item>Thevakkottai</item>
+        <item>Arasanoor</item>
+    </string-array>
+    <string-array name="tenkasi">
+        <item>Select City</item>
+        <item>Verakeralamputhur</item>
+        <item>Thiruvengadam</item>
+        <item>Tenkasi</item>
+        <item>Sivagiri</item>
+        <item>Senkkottai</item>
+        <item>Sankarankovil</item>
+        <item>Paavurchathiram</item>
+        <item>Kuruvikulam</item>
+        <item>Kadaiyanallur</item>
+        <item>Alangulam</item>
+    </string-array>
+    <string-array name="thanjavur">
+        <item>Select City</item>
+        <item>Thiruvidaimaruthur</item>
+        <item>Thiruvaiyaaru</item>
+        <item>Thirunageswaram</item>
+        <item>Thirupuvanam</item>
+        <item>Thirumandakudi</item>
+        <item>Thanjavur</item>
+        <item>Pillaiyaarpatti</item>
+        <item>Peravurani</item>
+        <item>Pattukkottai</item>
+        <item>Papanasam</item>
+        <item>Orathanadu</item>
+        <item>Naanjikkottai</item>
+        <item>Nachiyarkovil</item>
+        <item>Mathukoor</item>
+        <item>Kurunkulam</item>
+        <item>Kumbakonam</item>
+        <item>Kootthur</item>
+        <item>Sozhagampatti</item>
+        <item>Poothalur</item>
+        <item>Ammankkottai</item>
+    </string-array>
+    <string-array name="nilagiri">
+        <item>Select City</item>
+        <item>Vellingdan</item>
+        <item>Udagamandalam</item>
+        <item>Panthaloor</item>
+        <item>Ooty</item>
+        <item>Koothagiri</item>
+        <item>Koodalur</item>
+        <item>Kunnur</item>
+    </string-array>
+    <string-array name="theni">
+        <item>Select City</item>
+        <item>Utthamapalayam</item>
+        <item>Theni</item>
+        <item>Periyakulam</item>
+        <item>Mayiladumpaarai</item>
+        <item>Koombai</item>
+        <item>Jeyamangalam</item>
+        <item>Koodalur</item>
+        <item>Kambam</item>
+        <item>Chinnamannur</item>
+        <item>Podinayakkanur</item>
+        <item>Andipatti</item>
+    </string-array>
+    <string-array name="tutukodi">
+        <item>Select City</item>
+        <item>Vilathikulam</item>
+        <item>Udankudi</item>
+        <item>Thiruchendur</item>
+        <item>Tutocorin</item>
+        <item>Sri Vaikundam</item>
+        <item>Sathankulam</item>
+        <item>Puthiyampatti</item>
+        <item>Puthur</item>
+        <item>Ottapidaram</item>
+        <item>Kovilpatti</item>
+        <item>kayattharu</item>
+        <item>Karunkulam</item>
+        <item>Kazhugumalai</item>
+        <item>Ettaiyapuram</item>
+        <item>Eral</item>
+        <item>Azhvarthirunagari</item>
+    </string-array>
+    <string-array name="trichy">
+        <item>Select City</item>
+        <item>Vaalavanthaankottai</item>
+        <item>Vaiyampatti</item>
+        <item>Uppiliyapuram</item>
+        <item>Tiruchirappalli</item>
+        <item>Thuvakudi</item>
+        <item>Thuraiyur</item>
+        <item>Thottiyam</item>
+        <item>Thiruverumpoor</item>
+        <item>Sri Rangam</item>
+        <item>Pullampadi</item>
+        <item>Musiri</item>
+        <item>Marungapuri</item>
+        <item>Manikandam</item>
+        <item>Manapparai</item>
+        <item>Manacchanallur</item>
+        <item>Lalgudi</item>
+        <item>Kumbakudi</item>
+        <item>Ariyamangalam</item>
+        <item>Anthanallur</item>
+    </string-array>
+    <string-array name="thirunelveli">
+        <item>Select City</item>
+        <item>Veravanallur</item>
+        <item>Thirunelveli</item>
+        <item>Rathapuram</item>
+        <item>Pappangudi</item>
+        <item>Palaiyankottai</item>
+        <item>Naanguneri</item>
+        <item>kalakkaadu</item>
+        <item>Kadaiyam</item>
+        <item>Cheranmahathevi</item>
+        <item>Amapasamuthiram</item>
+    </string-array>
+    <string-array name="thirupatthur">
+        <item>Select City</item>
+        <item>Vaaniyambaadi</item>
+        <item>Thirupatthur</item>
+        <item>Nattram palli</item>
+        <item>Amabur</item>
+    </string-array>
+    <string-array name="thiruppur">
+        <item>Select City</item>
+        <item>Velampalayam</item>
+        <item>Uttukkuli</item>
+        <item>Udumalaipet</item>
+        <item>Thiruppur</item>
+        <item>Thirumuruganpundi</item>
+        <item>Sankaramanallur</item>
+        <item>Rudravathi</item>
+        <item>Palladam</item>
+        <item>Nallur</item>
+        <item>Muthur</item>
+        <item>Moolanoor</item>
+        <item>Madatthukulam</item>
+        <item>Kunnathur</item>
+        <item>Gowlatthupalayam</item>
+        <item>kannivaadi</item>
+        <item>Gaangeyam</item>
+        <item>Kudimangalam</item>
+        <item>Ganapathipalayam</item>
+        <item>Tharapuram</item>
+        <item>Chinnakkampalayam</item>
+        <item>Avinasi</item>
+    </string-array>
+    <string-array name="thiruvallur">
+        <item>Select City</item>
+        <item>Villivakkam</item>
+        <item>Uttukkottai</item>
+        <item>Thiruvallur</item>
+        <item>Thiruvotriyur</item>
+        <item>Thiruthani</item>
+        <item>Thirumazhisai</item>
+        <item>Puzhal</item>
+        <item>Poorur</item>
+        <item>Poonthamalli</item>
+        <item>Ponneri</item>
+        <item>Pallipattu</item>
+        <item>Mugapper</item>
+        <item>Maduravaayal</item>
+        <item>Maadhawaram</item>
+        <item>Kakkaloor</item>
+        <item>Kummidipoondi</item>
+        <item>Avadi</item>
+        <item>Ambathur</item>
+        <item>Alapakkam</item>
+    </string-array>
+    <string-array name="thiruvannamalai">
+        <item>Select City</item>
+        <item>West Aarani</item>
+        <item>Vettavalam</item>
+        <item>Vempakkam</item>
+        <item>Vanthavaasi</item>
+        <item>Thiruvannamalai</item>
+        <item>Thurinjappuram</item>
+        <item>Thellaar</item>
+        <item>Puthupalayam</item>
+        <item>Thandarampet</item>
+        <item>Poolur</item>
+        <item>Penaramallur</item>
+        <item>Parwathamalai</item>
+        <item>Kizhipennatthur</item>
+        <item>Kalasapakkam</item>
+        <item>Seiyaaru</item>
+        <item>Settupattu</item>
+        <item>Chengam</item>
+        <item>Aarani</item>
+        <item>Anagavur</item>
+    </string-array>
+    <string-array name="thiruvarur">
+        <item>Select City</item>
+        <item>Valangaimaan</item>
+        <item>Thiruvaarur</item>
+        <item>Thiruduraippoondi</item>
+        <item>Needamangalam</item>
+        <item>Nannilam</item>
+        <item>Muthupet</item>
+        <item>Mannarkudi</item>
+        <item>Kudavasal</item>
+        <item>Goothur</item>
+        <item>Karuppoor</item>
+    </string-array>
+    <string-array name="vellore">
+        <item>Select City</item>
+        <item>Vellore</item>
+        <item>Solingar</item>
+        <item>Pulivalam</item>
+        <item>Perampattu</item>
+        <item>Katpaadi</item>
+        <item>Kudiyaatham</item>
+    </string-array>
+    <string-array name="villupuram">
+        <item>Select City</item>
+        <item>Villupuram</item>
+        <item>Vikkiravaandi</item>
+        <item>Vaanoor</item>
+        <item>thiruvenneinallur</item>
+        <item>Thindivanam</item>
+        <item>Kooliyanoor</item>
+        <item>Chenji</item>
+        <item>Kandacchipuram</item>
+    </string-array>
+    <string-array name="virudhunagar">
+        <item>Select City</item>
+        <item>Virudhunagar</item>
+        <item>Vembakkottai</item>
+        <item>Thirusuzhi</item>
+        <item>Thalavaipuram</item>
+        <item>Srivilliputhur</item>
+        <item>Sivakasi</item>
+        <item>Sattur</item>
+        <item>Rajapalayam</item>
+        <item>kaariyaapatti</item>
+        <item>Chatrapatti</item>
+        <item>Aruppukottai</item>
+    </string-array>
+    <string-array name="karaikaal">
+        <item>Select City</item>
+        <item>Thirunallaaru</item>
+        <item>Thirumalarayanpattnam</item>
+        <item>Nedunkaadu</item>
+        <item>Karaikaal</item>
+    </string-array>
+    <string-array name="mahi">
+        <item>Select City</item>
+        <item>Mahi</item>
+    </string-array>
+    <string-array name="puducheri">
+        <item>Select City</item>
+        <item>Villiyanoor</item>
+        <item>Pudhucheri</item>
+        <item>Ozhukarai</item>
+        <item>Manaveli</item>
+        <item>Kurumbapet</item>
+        <item>Paakur</item>
+        <item>Ariyankuppam</item>
+    </string-array>
+    <string-array name="yaanam">
+        <item>Select City</item>
+        <item>Yaanam</item>
+    </string-array>
+
+</resources>

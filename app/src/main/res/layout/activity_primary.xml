@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="?attr/background"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".primary">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:id="@+id/donated"/>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_corner"
+            android:text="@string/donate"
+            android:id="@+id/donate"
+            android:layout_weight="1"
+            android:layout_margin="10dp"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/settings"
+        android:id="@+id/settings"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/options"/>
+    </LinearLayout>
+</LinearLayout>
