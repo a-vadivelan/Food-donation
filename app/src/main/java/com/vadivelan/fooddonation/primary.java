@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -30,7 +31,14 @@ public class primary extends AppCompatActivity {
 		});
 		settings.setOnClickListener((View v)->{
 			Intent intent2 = new Intent(this,options.class);
-			startActivity(intent2);
+			intent2.putExtra("finisher",new ResultReceiver(null){
+				@Override
+				protected void onReceiveResult(int resultCode, Bundle resultData) {
+					super.onReceiveResult(resultCode, resultData);
+					primary.this.finish();
+				}
+			});
+			startActivityForResult(intent2,1);
 		});
 		List<ModelClass> food_list = new ArrayList<>();
 		food_list.add(new ModelClass("Arun","Idly",13,"Madurai","9876543210","01-11-2021"));

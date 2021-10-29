@@ -39,5 +39,9 @@
             android:id="@+id/verify_btn"
             android:backgroundTint="#E3145B"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/otp_number" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

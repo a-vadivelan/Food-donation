@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +23,7 @@ public class options extends AppCompatActivity {
 	AlertDialog.Builder alert_builder;
 	Button delete_ac;
 	Intent intent;
+	FirebaseAuth auth;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -27,12 +31,16 @@ public class options extends AppCompatActivity {
 		active_food = findViewById(R.id.active_food);
 		delete_ac = findViewById(R.id.delete_ac);
 		intent = new Intent(this,MainActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+		auth = FirebaseAuth.getInstance();
 		alert_builder = new AlertDialog.Builder(this);
 		alert_builder.setTitle(R.string.app_name)
 				.setCancelable(false)
 				.setMessage("Are you sure delete your account?")
 				.setPositiveButton("Yes",(DialogInterface dialog, int which)->{
+					auth.signOut();
 					Toast.makeText(this, "Account successfully deleted", Toast.LENGTH_SHORT).show();
+					((ResultReceiver)getIntent().getParcelableExtra("finisher")).send(1,new Bundle());
 					startActivity(intent);
 					finish();
 					})
