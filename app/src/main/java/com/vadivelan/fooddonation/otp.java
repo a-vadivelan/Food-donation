@@ -34,7 +34,7 @@ TextView otp_number;
 		verify = findViewById(R.id.verify_btn);
 		otp_number = findViewById(R.id.otp_number);
 		OTP  = getIntent().getStringExtra("auth");
-		otp_number.setText(String.format("OTP has been send to %s",getIntent().getStringExtra("mobile")));
+		otp_number.setText(String.format("OTP has been send to +91%s",getIntent().getStringExtra("mobile")));
 		processing_dialog = new AlertDialog.Builder(this);
 		processing_dialog.setMessage("Processing..").setCancelable(false).create();
 		verify.setOnClickListener((View v)->{

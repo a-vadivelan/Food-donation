@@ -12,11 +12,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:text="@string/name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:id="@+id/donor_name"
+            android:text="@string/name"/>
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="@string/food_name" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:layout_weight="1"
             android:id='@+id/food_name'
             android:text="@string/food_name" />
     </TableRow>
@@ -31,6 +46,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:id="@+id/available"
+            android:layout_weight="1"
             android:text="@string/food_available_for"/>
     </TableRow>
     <TableRow>
@@ -44,6 +60,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:id="@+id/location"
+            android:layout_weight="1"
             android:text="@string/location"/>
     </TableRow>
     <TableRow>
@@ -57,18 +74,20 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:id="@+id/date"
+            android:layout_weight="1"
             android:text="@string/date"/>
     </TableRow>
     <TableRow>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="@string/cell"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="@string/cell"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:layout_weight="1"
             android:id="@+id/cell"
             android:text="@string/cell"/>
     </TableRow>
@@ -77,13 +96,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/edit"
-            android:contentDescription="@string/edit"
             android:src="@drawable/edit"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/remove"
-            android:contentDescription="@string/remove"
             android:src="@drawable/remove"/>
     </TableRow>
 </TableLayout>

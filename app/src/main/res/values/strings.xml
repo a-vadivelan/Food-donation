@@ -2,14 +2,14 @@
     <string name="app_name">Food Donation</string>
     <string name="headline">Feeding Hunger, Saving Lives</string>
     <string name="signin">Signin</string>
-    <string name="mobile_number">Mobile number(with country code)</string>
+    <string name="mobile_number">Mobile number</string>
     <string name="send_otp">Send OTP</string>
     <string name="verify_otp">Verify OTP</string>
     <string name="enter_otp">Enter OTP</string>
     <string name="donate">Donate</string>
     <string name="name">Name:</string>
     <string name="food_name">Food Name:</string>
-    <string name="food_available_for">Food Available for(person(s)):</string>
+    <string name="food_available_for">Food Available Quantity:</string>
     <string name="location">Location:</string>
     <string name="date">Date:</string>
     <string name="cell">Cell:</string>
@@ -25,4 +25,9 @@
     <string name="edit">Edit</string>
     <string name="remove">Remove</string>
     <string name="address">Address</string>
+    <string name="india_country_code">+91</string>
+    <string-array name="units">
+        <item>Items</item>
+        <item>Kilograms</item>
+    </string-array>
 </resources>

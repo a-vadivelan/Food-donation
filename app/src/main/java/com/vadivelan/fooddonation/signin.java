@@ -41,14 +41,14 @@ PhoneAuthProvider.OnVerificationStateChangedCallbacks callback;
 		send_btn.setOnClickListener((View v)->{
 			otp_number=mobile_number.getText().toString();
 			if(otp_number.isEmpty())
-				Toast.makeText(this, "Please enter your mobile number with country code", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "Please enter your mobile number", Toast.LENGTH_SHORT).show();
 			else {
 				processing_dialog.setMessage("Processing..")
 						.setCancelable(false)
 						.create();
 				alertDialog = processing_dialog.show();
 				PhoneAuthOptions authOptions = PhoneAuthOptions.newBuilder(auth)
-						.setPhoneNumber(otp_number)
+						.setPhoneNumber("+91"+otp_number)
 						.setTimeout(60L, TimeUnit.SECONDS)
 						.setActivity(this)
 						.setCallbacks(callback)

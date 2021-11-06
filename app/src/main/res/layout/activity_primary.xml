@@ -28,6 +28,13 @@
             android:id="@+id/donate"
             android:layout_weight="1"
             android:layout_margin="10dp"/>
+        <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/refresh"
+        android:id="@+id/refresh"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/options"/>
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

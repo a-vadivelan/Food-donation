@@ -38,6 +38,10 @@
         android:autofillHints="false"
         android:hint="@string/enter_food_name"
         android:inputType="textPersonName"/>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,10 +49,20 @@
         android:hint="@string/food_available_for"
         android:id="@+id/food_available"
         android:autofillHints="false"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/unit"
+            android:entries="@array/units"/>
+    </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="@string/your_location"/>
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
         <Spinner
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,6 +73,7 @@
             android:layout_height="wrap_content"
             android:visibility="invisible"
             android:id="@+id/city"/>
+    </LinearLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,15 +84,16 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
+        android:id="@+id/mobile"
         android:autofillHints="false"
-        android:hint="@string/date" />
+        android:hint="@string/mobile_number" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"
         android:background="@drawable/round_corner"
         android:layout_gravity="center_horizontal"
+        android:textAllCaps="false"
         android:id="@+id/submit_donate"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
