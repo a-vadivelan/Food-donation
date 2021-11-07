@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/donate_food"
+        android:text="@string/edit_donation"
         android:textColor="@color/custom_purple"
         android:textSize="30sp"/>
     <EditText

@@ -1,5 +1,6 @@
 package com.vadivelan.fooddonation;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,8 +67,15 @@ Adapter_two(List<ModelClass> active_food){
 			//tdate.setText(date);
 			edit.setContentDescription(postId);
 			remove.setContentDescription(postId);
-			edit.setOnClickListener((View v)->{
-
+			edit.setOnClickListener((View view)->{
+				Intent edit = new Intent(view.getContext(),EditDonationActivity.class);
+				edit.putExtra("name",name);
+				edit.putExtra("food",food);
+				edit.putExtra("address",address);
+				edit.putExtra("available",available);
+				edit.putExtra("id",postId);
+				edit.putExtra("mobile",mobile);
+				view.getContext().startActivity(edit);
 			});
 			remove.setOnClickListener((View v)->{
 				ref.child(String.valueOf(v.getContentDescription())).removeValue();

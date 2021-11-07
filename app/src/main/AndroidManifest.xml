@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodDonation">
         <activity
+            android:name=".EditDonationActivity"
+            android:exported="false" />
+        <activity
             android:name=".options"
             android:exported="true" />
         <activity
