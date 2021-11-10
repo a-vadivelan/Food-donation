@@ -13,7 +13,7 @@
         android:theme="@style/Theme.FoodDonation">
         <activity
             android:name=".EditDonationActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".options"
             android:exported="true" />

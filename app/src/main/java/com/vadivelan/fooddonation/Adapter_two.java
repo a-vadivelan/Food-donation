@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 
@@ -45,6 +47,7 @@ Adapter_two(List<ModelClass> active_food){
 	ImageButton edit,remove;
 	FirebaseAuth auth = FirebaseAuth.getInstance();
 	FirebaseDatabase database = FirebaseDatabase.getInstance();
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
 	DatabaseReference ref = database.getReference().getRoot().child(String.valueOf(auth.getCurrentUser().getPhoneNumber()));
 		ViewHolder(View v){
 			super(v);
@@ -64,7 +67,7 @@ Adapter_two(List<ModelClass> active_food){
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s ",available,unit));
 			location.setText(String.format(Locale.ENGLISH,"%s, %s, %s",address,city,district));
 			cell.setText(mobile);
-			//tdate.setText(date);
+			date_and_time.setText(simpleDateFormat.format(new Date(Long.parseLong(time))));
 			edit.setContentDescription(postId);
 			remove.setContentDescription(postId);
 			edit.setOnClickListener((View view)->{

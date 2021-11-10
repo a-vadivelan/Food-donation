@@ -81,10 +81,12 @@ PhoneAuthProvider.OnVerificationStateChangedCallbacks callback;
 				Intent intent = new Intent(signin.this,otp.class);
 				intent.putExtra("auth",s);
 				intent.putExtra("mobile",otp_number);
+				intent.putExtra("token",forceResendingToken);
 				alertDialog.dismiss();
 				startActivity(intent);
 				finish();
 			}
+
 		};
 	}
 }

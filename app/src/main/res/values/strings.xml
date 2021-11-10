@@ -27,6 +27,8 @@
     <string name="address">Address</string>
     <string name="india_country_code">+91</string>
     <string name="edit_donation">Edit Donation</string>
+    <string name="refresh">Refresh</string>
+    <string name="resend_otp">Resend OTP</string>
     <string-array name="units">
         <item>Items</item>
         <item>Kilograms</item>

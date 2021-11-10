@@ -62,9 +62,9 @@
         <item>Thirupoorur</item>
         <item>Thirukazhungkundram</item>
         <item>Thambaram</item>
+        <item>Seiyur</item>
         <item>Palavaram</item>
         <item>Mathuraanthagam</item>
-        <item>Seiyur</item>
         <item>Chengalpet</item>
     </string-array>
     <string-array name="chennai">
@@ -81,7 +81,7 @@
         <item>Perampur</item>
         <item>Orakadam</item>
         <item>Mayilapur</item>
-        <item>Maraimalai nagar</item>
+        <item>Maraimalai Nagar</item>
         <item>Manapaakam</item>
         <item>Mampalam</item>
         <item>Madipakam</item>
@@ -90,7 +90,7 @@
         <item>Guindy</item>
         <item>Ezhumpur</item>
         <item>Chennai</item>
-        <item>Settupattu</item>
+        <item>Chettupattu</item>
         <item>Ayanavaram</item>
         <item>Aminjikarai</item>
         <item>Alapakam</item>
@@ -118,13 +118,13 @@
         <item>Mathukarai</item>
         <item>Kuniyamuthur</item>
         <item>Kinathukadavu</item>
-        <item>karamadai</item>
+        <item>Karamadai</item>
         <item>Kaalapatti</item>
         <item>Irugur</item>
         <item>Goundampalayam</item>
         <item>Gandhipuram</item>
         <item>Coimbatore</item>
-        <item>Settipalayam</item>
+        <item>Chettipalayam</item>
         <item>Annur</item>
         <item>Aanaimalai</item>
     </string-array>
@@ -140,7 +140,7 @@
         <item>Kumaraachi</item>
         <item>Kirappalayam</item>
         <item>Kaattumannarkovil</item>
-        <item>kammapuram</item>
+        <item>Kammapuram</item>
         <item>Cuddalore</item>
         <item>Chithamparam</item>
         <item>Puvanagiri</item>
@@ -151,19 +151,20 @@
         <item>Pennagaram</item>
         <item>Paapirettipatti</item>
         <item>Papparapatti</item>
-        <item>Balakodu</item>
         <item>Nallampalli</item>
         <item>Mandaragalli</item>
-        <item>kaarimangalam</item>
+        <item>Kaarimangalam</item>
         <item>Kambainallur</item>
         <item>Kadathur</item>
-        <item>Arur</item>
         <item>Dharamapuri</item>
         <item>Bommidi</item>
+        <item>Balakodu</item>
+        <item>Arur</item>
     </string-array>
     <string-array name="dindugal">
         <item>Select City</item>
         <item>Vedanchandur</item>
+        <item>Vatthalakundu</item>
         <item>Pazhani</item>
         <item>Ottanchithiram</item>
         <item>Nilakkottai</item>
@@ -172,7 +173,6 @@
         <item>Gandhikiramam</item>
         <item>Dindugal</item>
         <item>Chinaalapatti</item>
-        <item>Vatthalakundu</item>
         <item>Aathur</item>
     </string-array>
     <string-array name="erode">
@@ -188,7 +188,7 @@
         <item>Gobichettipalayam</item>
         <item>Erode</item>
         <item>Chenimala</item>
-        <item>Pavani</item>
+        <item>Bavani</item>
         <item>Atthaani</item>
         <item>Anthiyur</item>
         <item>Ammappet</item>
@@ -200,7 +200,7 @@
         <item>Thirukovilur</item>
         <item>Sankarapuram</item>
         <item>Kalvarayanmalai</item>
-        <item>kallakurichi</item>
+        <item>Kallakurichi</item>
         <item>Chinnasalem</item>
     </string-array>
     <string-array name="kanchipuram">
@@ -214,7 +214,7 @@
         <item>Kaathaankulathur</item>
         <item>Kanchipuram</item>
         <item>Chittamur</item>
-        <item>Aalandhur</item>
+        <item>Alandhur</item>
         <item>Accharapakam</item>
     </string-array>
     <string-array name="kanniyakumari">
@@ -233,7 +233,7 @@
         <item>Koonam</item>
         <item>Karungal</item>
         <item>Kanniyakumari</item>
-        <item>kalkulam</item>
+        <item>Kalkulam</item>
         <item>Kolachal</item>
         <item>Agasthisvaram</item>
     </string-array>
@@ -255,7 +255,7 @@
         <item>Kadavur</item>
         <item>K Paramathi</item>
         <item>Chinatharapuram</item>
-        <item>Aathur</item>
+        <item>Athur</item>
         <item>Aravakurichi</item>
     </string-array>
     <string-array name="krishnagiri">
@@ -267,14 +267,14 @@
         <item>Maathur</item>
         <item>Krishnagiri</item>
         <item>Kaaveripattinam</item>
-        <item>Osur</item>
-        <item>Thenkanikkottai</item>
-        <item>Pargur</item>
+        <item>Hosur</item>
+        <item>Dhenkanikkottai</item>
+        <item>Bargur</item>
     </string-array>
     <string-array name="madurai">
         <item>Select City</item>
         <item>Villapuram</item>
-        <item>vaadipatti</item>
+        <item>Vaadipatti</item>
         <item>Usilampatti</item>
         <item>Urangaanpatti</item>
         <item>Thirumangalam</item>
@@ -282,7 +282,7 @@
         <item>Thirumoogur</item>
         <item>Theppakulam</item>
         <item>T Kallupatti</item>
-        <item>Chimmakkal</item>
+        <item>Simmakkal</item>
         <item>Sellur</item>
         <item>Peraiyur</item>
         <item>Pasumalai</item>
@@ -308,7 +308,7 @@
         <item>Velangkanni</item>
         <item>Vetharaniyam</item>
         <item>Vanduvaancheri</item>
-        <item>vadamalai</item>
+        <item>Vadamalai</item>
         <item>Thirukuvalai</item>
         <item>Thanikkotthagam</item>
         <item>Thaikkal</item>
@@ -341,7 +341,7 @@
         <item>Veppur</item>
         <item>Veppanthattai</item>
         <item>Udumbiyaam</item>
-        <item>Pulaampati</item>
+        <item>Pullampati</item>
         <item>Perambalur</item>
         <item>Naranamangalam</item>
         <item>Lappaikudikaadu</item>
@@ -360,10 +360,10 @@
         <item>Ponnamaraavathi</item>
         <item>Manamelkudi</item>
         <item>Macchavaadi</item>
-        <item>kulatthur</item>
-        <item>Surambakkudi</item>
+        <item>Kulatthur</item>
+        <item>Karambakkudi</item>
         <item>Iluppur</item>
-        <item>Kanthavarkkottai</item>
+        <item>Gandarvakkottai</item>
         <item>Aavudaiyaarkovil</item>
         <item>Arimazham</item>
         <item>Aranthangi</item>
@@ -373,7 +373,7 @@
     <string-array name="ramnad">
         <item>Select City</item>
         <item>Vazhinokkam</item>
-        <item>Vazhanthaaravai</item>
+        <item>Valatharavai</item>
         <item>Thiruvadanai</item>
         <item>Thelicchatthanallur</item>
         <item>Rameswaram</item>
@@ -381,14 +381,14 @@
         <item>RS Mangalam</item>
         <item>Paramakudi</item>
         <item>Paamboor</item>
-        <item>Nenmeeni</item>
+        <item>Nenmeni</item>
         <item>Nainaarkovil</item>
         <item>Mutukulathur</item>
         <item>Kizhakkarai</item>
         <item>Kamuthi</item>
         <item>Kamuthakkudi</item>
-        <item>kadaladi</item>
-        <item>Poogaloor</item>
+        <item>Kadaladi</item>
+        <item>Boogaloor</item>
         <item>Acchundanvayal</item>
     </string-array>
     <string-array name="ranipet">
@@ -396,12 +396,12 @@
         <item>Valajapet</item>
         <item>Ranipet</item>
         <item>Nemili</item>
-        <item>Arcod</item>
+        <item>Arcot</item>
         <item>Arakkoonam</item>
     </string-array>
     <string-array name="salem">
         <item>Select City</item>
-        <item>Ercod</item>
+        <item>Yercaud</item>
         <item>Verakanur</item>
         <item>Vaazhappaadi</item>
         <item>Udaiyampatti</item>
@@ -427,19 +427,19 @@
         <item>Thirupatthur</item>
         <item>Sivaganga</item>
         <item>Singampunari</item>
-        <item>Sozhalavanthaan</item>
+        <item>Sholavanthan</item>
         <item>Sanmuganathapuram</item>
         <item>Saakkottai</item>
         <item>S Puthur</item>
         <item>Muthupatti</item>
         <item>Manamadurai</item>
         <item>Kirunkapet</item>
-        <item>karaikudi</item>
+        <item>Karaikudi</item>
         <item>Kannankudi</item>
         <item>Kallal</item>
         <item>Kaalaiyarkovil</item>
         <item>Ilayankudi</item>
-        <item>Thevakkottai</item>
+        <item>Dhevakkottai</item>
         <item>Arasanoor</item>
     </string-array>
     <string-array name="tenkasi">
@@ -474,8 +474,8 @@
         <item>Kurunkulam</item>
         <item>Kumbakonam</item>
         <item>Kootthur</item>
-        <item>Sozhagampatti</item>
-        <item>Poothalur</item>
+        <item>Chozhagampatti</item>
+        <item>Boothalur</item>
         <item>Ammankkottai</item>
     </string-array>
     <string-array name="nilagiri">
@@ -514,7 +514,7 @@
         <item>Puthur</item>
         <item>Ottapidaram</item>
         <item>Kovilpatti</item>
-        <item>kayattharu</item>
+        <item>Kayattharu</item>
         <item>Karunkulam</item>
         <item>Kazhugumalai</item>
         <item>Ettaiyapuram</item>
@@ -551,7 +551,7 @@
         <item>Pappangudi</item>
         <item>Palaiyankottai</item>
         <item>Naanguneri</item>
-        <item>kalakkaadu</item>
+        <item>Kalakkaadu</item>
         <item>Kadaiyam</item>
         <item>Cheranmahathevi</item>
         <item>Amapasamuthiram</item>
@@ -579,11 +579,11 @@
         <item>Madatthukulam</item>
         <item>Kunnathur</item>
         <item>Gowlatthupalayam</item>
-        <item>kannivaadi</item>
+        <item>Kannivaadi</item>
         <item>Gaangeyam</item>
-        <item>Kudimangalam</item>
+        <item>Gudimangalam</item>
         <item>Ganapathipalayam</item>
-        <item>Tharapuram</item>
+        <item>Dharapuram</item>
         <item>Chinnakkampalayam</item>
         <item>Avinasi</item>
     </string-array>
@@ -625,8 +625,8 @@
         <item>Parwathamalai</item>
         <item>Kizhipennatthur</item>
         <item>Kalasapakkam</item>
-        <item>Seiyaaru</item>
-        <item>Settupattu</item>
+        <item>Chiyaaru</item>
+        <item>CHettupattu</item>
         <item>Chengam</item>
         <item>Aarani</item>
         <item>Anagavur</item>
@@ -658,7 +658,7 @@
         <item>Villupuram</item>
         <item>Vikkiravaandi</item>
         <item>Vaanoor</item>
-        <item>thiruvenneinallur</item>
+        <item>Thiruvenneinallur</item>
         <item>Thindivanam</item>
         <item>Kooliyanoor</item>
         <item>Chenji</item>
@@ -674,7 +674,7 @@
         <item>Sivakasi</item>
         <item>Sattur</item>
         <item>Rajapalayam</item>
-        <item>kaariyaapatti</item>
+        <item>Kaariyaapatti</item>
         <item>Chatrapatti</item>
         <item>Aruppukottai</item>
     </string-array>

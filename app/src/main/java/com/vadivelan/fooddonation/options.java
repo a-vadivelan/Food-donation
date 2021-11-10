@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,7 @@ public class options extends AppCompatActivity {
 	AlertDialog.Builder alert_builder,alert_builder_two;
 	AlertDialog alertDialog;
 	TextView user_id;
+	ImageButton refresh;
 	Button delete_ac;
 	Intent intent;
 	Adapter_two adapter;
@@ -50,6 +52,7 @@ public class options extends AppCompatActivity {
 		active_food = findViewById(R.id.active_food);
 		delete_ac = findViewById(R.id.delete_ac);
 		user_id = findViewById(R.id.user_id);
+		refresh = findViewById(R.id.refresh);
 		intent = new Intent(this,MainActivity.class);
 		linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 		active_food.setLayoutManager(linearLayoutManager);
@@ -98,9 +101,12 @@ public class options extends AppCompatActivity {
 		} catch (Exception exception) {
 			Toast.makeText(options.this,exception.getMessage(), Toast.LENGTH_LONG).show();
 		}
-		delete_ac.setOnClickListener((View v)->{
-			alertDialog = alert_builder.show();
+		delete_ac.setOnClickListener((View v)->alertDialog = alert_builder.show());
+		refresh.setOnClickListener((View v)->{
+			Intent re = new Intent(this,options.class);
+			startActivity(re);
+			finish();
+			overridePendingTransition(0,0);
 		});
-
 	}
 }
