@@ -79,11 +79,13 @@ public class options extends AppCompatActivity {
 					try {
 						for (DataSnapshot snapshot1 : snapshot.getChildren()) { //Getting post of users
 							detail = new StringBuilder();
-							for (DataSnapshot snapshot2 : snapshot1.getChildren())
-								detail.append(",").append(snapshot2.getValue());
-							string_detail = (detail.toString()).split(",");
-							//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit
-							available_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10]));
+							if ((System.currentTimeMillis() - Long.parseLong(String.valueOf(snapshot1.child("timestamp").getValue()))) < 86400000) {
+								for (DataSnapshot snapshot2 : snapshot1.getChildren())
+									detail.append(",").append(snapshot2.getValue());
+								string_detail = (detail.toString()).split(",");
+								//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit
+								available_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10]));
+							}
 						}
 					} catch(Exception e){
 						Toast.makeText(options.this,e.getMessage(),Toast.LENGTH_LONG).show();
