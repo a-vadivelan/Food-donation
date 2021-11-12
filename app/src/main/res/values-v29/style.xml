@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme">
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:backgroundTint">#FA0055</item>
+    </style>
+</resources>
