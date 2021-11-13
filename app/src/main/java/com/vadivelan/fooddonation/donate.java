@@ -92,7 +92,7 @@ locations cities = new locations();
 					Toast.makeText(this,"Please fill your mobile number",Toast.LENGTH_LONG).show();
 				else {
 					//String name, String food, String available, String district, String city, String address, String mobile
-					userRef = ref.child(String.valueOf(auth.getCurrentUser().getPhoneNumber()));
+					userRef = ref.child(auth.getCurrentUser().getUid());
 					postRef = userRef.push();
 					postRef.setValue(new Post(filled_address, filled_available, filled_city, filled_district, filled_food, filled_mobile, filled_name, null,timestamp,filled_unit));
 					postIdUpdate.put("postId", postRef.getKey());

@@ -43,6 +43,6 @@
         android:src="@drawable/refresh"
         android:id="@+id/refresh"
         android:layout_gravity="center_vertical"
-        android:contentDescription="@string/refresh"/>
+        android:contentDescription="@string/refresh" />
     </LinearLayout>
 </LinearLayout>

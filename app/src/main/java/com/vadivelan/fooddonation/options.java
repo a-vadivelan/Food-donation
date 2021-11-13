@@ -58,17 +58,33 @@ public class options extends AppCompatActivity {
 		active_food.setLayoutManager(linearLayoutManager);
 		auth = FirebaseAuth.getInstance();
 		database = FirebaseDatabase.getInstance();
-		ref = database.getReference().getRoot().child(String.valueOf(auth.getCurrentUser().getPhoneNumber()));
+		ref = database.getReference().child(auth.getCurrentUser().getUid());
 		alert_builder = new AlertDialog.Builder(this);
 		alert_builder.setTitle(R.string.app_name)
 				.setCancelable(false)
-				.setMessage("Are you sure delete your account?")
+				.setMessage("Are you sure delete your account?\n(Your all posts will be deleted)")
 				.setPositiveButton("Yes",(DialogInterface dialog, int which)->{
-					auth.signOut();
-					Toast.makeText(this, "Account successfully deleted", Toast.LENGTH_SHORT).show();
-					((ResultReceiver)getIntent().getParcelableExtra("finisher")).send(1,new Bundle());
-					startActivity(intent);
-					finish();
+					try{
+						ref.addListenerForSingleValueEvent(new ValueEventListener() {
+							@Override
+							public void onDataChange(@NonNull DataSnapshot snapshot) {
+								for(DataSnapshot snapshot1 : snapshot.getChildren())
+									ref.child(String.valueOf(snapshot1.getKey())).removeValue();
+								auth.signOut();
+								Toast.makeText(options.this, "Account successfully deleted", Toast.LENGTH_SHORT).show();
+								((ResultReceiver)getIntent().getParcelableExtra("finisher")).send(1,new Bundle());
+								startActivity(intent);
+								finish();
+							}
+
+							@Override
+							public void onCancelled(@NonNull DatabaseError error) {
+
+							}
+						});
+					}catch(Exception error){
+						Toast.makeText(options.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+					}
 					})
 				.setNegativeButton("No",(DialogInterface dialog, int which)->dialog.cancel()).create();
 		user_id.setText(String.valueOf(auth.getCurrentUser().getPhoneNumber()));

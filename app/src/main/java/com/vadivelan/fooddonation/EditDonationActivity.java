@@ -56,7 +56,7 @@ FirebaseAuth auth;
 		post_id = intent.getStringExtra("id");
 		auth = FirebaseAuth.getInstance();
 		database = FirebaseDatabase.getInstance();
-		ref = database.getReference().child(String.valueOf(auth.getCurrentUser().getPhoneNumber())).child(post_id);
+		ref = database.getReference().child(auth.getCurrentUser().getUid()).child(post_id);
 		district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

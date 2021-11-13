@@ -48,7 +48,7 @@ Adapter_two(List<ModelClass> active_food){
 	FirebaseAuth auth = FirebaseAuth.getInstance();
 	FirebaseDatabase database = FirebaseDatabase.getInstance();
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
-	DatabaseReference ref = database.getReference().getRoot().child(String.valueOf(auth.getCurrentUser().getPhoneNumber()));
+	DatabaseReference ref = database.getReference().getRoot().child(auth.getCurrentUser().getUid());
 		ViewHolder(View v){
 			super(v);
 			donar_name = v.findViewById(R.id.donor_name);

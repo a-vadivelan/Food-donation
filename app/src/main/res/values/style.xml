@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme">
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
         <item name="android:backgroundTint">#FA0055</item>
     </style>
 </resources>
