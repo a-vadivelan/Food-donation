@@ -1,11 +1,19 @@
 package com.vadivelan.fooddonation;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.Manifest;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
@@ -39,6 +47,8 @@ List<ModelClass> food_list;
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 		TextView name,food,quantity,address,mobile,date_time;
+		ImageButton call;
+		Intent intent;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
 		ViewHolder(View v){
 			super(v);
@@ -48,6 +58,7 @@ List<ModelClass> food_list;
 			address = v.findViewById(R.id.location);
 			mobile = v.findViewById(R.id.cell);
 			date_time = v.findViewById(R.id.date);
+			call = v.findViewById(R.id.call);
 		}
 		public void setData(String donar_address,String available,String city,String district,String food_name,String donar_mobile,String donar_name,String time,String unit){
 			name.setText(donar_name);
@@ -55,7 +66,20 @@ List<ModelClass> food_list;
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s",available,unit));
 			address.setText(String.format(Locale.ENGLISH,"%s, %s, %s",donar_address,city,district));
 			mobile.setText(donar_mobile);
+			call.setContentDescription(donar_mobile);
 			date_time.setText(simpleDateFormat.format(new Date(Long.parseLong(time))));
+			call.setOnClickListener((View v) -> {
+				intent = new Intent(Intent.ACTION_CALL);
+				intent.setData(Uri.parse("tel:"+donar_mobile));
+				if(ActivityCompat.checkSelfPermission(v.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+					v.getContext().startActivity(intent);
+				else{
+					Toast.makeText(v.getContext(),"Please give Phone call permission", Toast.LENGTH_SHORT).show();
+					Intent openSetting = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+					openSetting.setData(Uri.parse("package:"+v.getContext().getPackageName()));
+					v.getContext().startActivity(openSetting);
+				}
+			});
 		}
 	}
 }

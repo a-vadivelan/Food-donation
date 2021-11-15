@@ -2,9 +2,12 @@ package com.vadivelan.fooddonation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.Manifest;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +41,8 @@ PhoneAuthProvider.OnVerificationStateChangedCallbacks callback;
 		mobile_number = findViewById(R.id.mobile_number);
 		auth =FirebaseAuth.getInstance();
 		processing_dialog = new AlertDialog.Builder(this);
+		if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
+			ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},1);
 		send_btn.setOnClickListener((View v)->{
 			otp_number=mobile_number.getText().toString();
 			if(otp_number.isEmpty())

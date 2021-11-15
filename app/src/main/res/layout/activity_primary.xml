@@ -47,13 +47,17 @@
         android:layout_height="wrap_content"
         android:src="@drawable/refresh"
         android:id="@+id/refresh"
+        android:layout_margin="1dp"
         android:layout_gravity="center_vertical"
+        android:background="@color/gray_white"
         android:contentDescription="@string/refresh"/>
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/settings"
         android:id="@+id/settings"
+        android:layout_margin="1dp"
+        android:background="@color/gray_white"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/options"/>
     </LinearLayout>

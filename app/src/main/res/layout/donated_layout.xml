@@ -91,4 +91,13 @@
             android:id="@+id/cell"
             android:text="@string/cell"/>
     </TableRow>
+    <TableRow>
+        <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/call"
+        android:layout_span="2"
+        android:src="@drawable/call_new"
+        android:background="@color/gray_white"/>
+    </TableRow>
 </TableLayout>
