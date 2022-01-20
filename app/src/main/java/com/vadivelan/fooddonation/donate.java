@@ -3,6 +3,7 @@ package com.vadivelan.fooddonation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -48,7 +49,7 @@ locations cities = new locations();
 		unit = findViewById(R.id.unit);
 		auth = FirebaseAuth.getInstance();
 		database = FirebaseDatabase.getInstance();
-		ref = database.getReference();
+		ref = database.getReference().getRoot().child("post");
 		district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -70,6 +71,7 @@ locations cities = new locations();
 		});
 		submit_btn.setOnClickListener((View v)->{
 			try {
+				String Uid = auth.getCurrentUser().getUid();
 				filled_name = name.getText().toString();
 				filled_food = food_name.getText().toString();
 				filled_available = food_available.getText().toString();
@@ -90,13 +92,25 @@ locations cities = new locations();
 					Toast.makeText(this, "Please fill your address", Toast.LENGTH_LONG).show();
 				else if(filled_mobile.equals(""))
 					Toast.makeText(this,"Please fill your mobile number",Toast.LENGTH_LONG).show();
+				else if(filled_name.contains("="))
+					Toast.makeText(this,"Your name can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_food.contains("="))
+					Toast.makeText(this,"Food name can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_available.contains("="))
+					Toast.makeText(this,"Quantity can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_address.contains("="))
+					Toast.makeText(this,"Address can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_mobile.contains("="))
+					Toast.makeText(this,"mobile number can't be contain =",Toast.LENGTH_LONG).show();
 				else {
 					//String name, String food, String available, String district, String city, String address, String mobile
-					userRef = ref.child(auth.getCurrentUser().getUid());
+					userRef = ref.child(Uid);
+					Log.i("User",""+userRef);
 					postRef = userRef.push();
-					postRef.setValue(new Post(filled_address, filled_available, filled_city, filled_district, filled_food, filled_mobile, filled_name, null,timestamp,filled_unit));
+					postRef.setValue(new Post(filled_address, filled_available, filled_city, filled_district, filled_food, filled_mobile, filled_name, null,timestamp,filled_unit,Uid));
 					postIdUpdate.put("postId", postRef.getKey());
 					postRef.updateChildren(postIdUpdate);
+					Log.i("Post",postRef.getKey());
 					finish();
 				}
 			} catch (Exception e) {

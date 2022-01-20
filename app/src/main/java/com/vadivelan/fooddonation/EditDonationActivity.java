@@ -56,7 +56,7 @@ FirebaseAuth auth;
 		post_id = intent.getStringExtra("id");
 		auth = FirebaseAuth.getInstance();
 		database = FirebaseDatabase.getInstance();
-		ref = database.getReference().child(auth.getCurrentUser().getUid()).child(post_id);
+		ref = database.getReference().getRoot().child("post").child(auth.getCurrentUser().getUid()).child(post_id);
 		district.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -98,9 +98,19 @@ FirebaseAuth auth;
 					Toast.makeText(this, "Please fill your address", Toast.LENGTH_LONG).show();
 				else if(filled_mobile.equals(""))
 					Toast.makeText(this,"Please fill your mobile number", Toast.LENGTH_LONG).show();
+				else if(filled_name.contains("="))
+					Toast.makeText(this,"Your name can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_food.contains("="))
+					Toast.makeText(this,"Food name can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_available.contains("="))
+					Toast.makeText(this,"Quantity can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_address.contains("="))
+					Toast.makeText(this,"Address can't be contain =",Toast.LENGTH_LONG).show();
+				else if(filled_mobile.contains("="))
+					Toast.makeText(this,"mobile number can't be contain =",Toast.LENGTH_LONG).show();
 				else {
 					//String name, String food, String available, String district, String city, String address, String mobile
-					ref.setValue(new Post(filled_address, filled_available, filled_city, filled_district, filled_food, filled_mobile, filled_name, post_id,timestamp,filled_unit));
+					ref.setValue(new Post(filled_address, filled_available, filled_city, filled_district, filled_food, filled_mobile, filled_name, post_id,timestamp,filled_unit,intent.getStringExtra("userId")));
 					finish();
 				}
 			} catch (Exception e) {

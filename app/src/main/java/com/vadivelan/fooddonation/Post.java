@@ -1,8 +1,8 @@
 package com.vadivelan.fooddonation;
 
 public class Post {
-	public String name,food,available,district,city,address,mobile,postId,unit,timestamp;
-	public Post(String address, String available, String city, String district, String food, String mobile, String name,String postId,String timestamp,String unit) {
+	public String name,food,available,district,city,address,mobile,postId,unit,timestamp,userId;
+	public Post(String address, String available, String city, String district, String food, String mobile, String name,String postId,String timestamp,String unit,String userId) {
 		this.name = name;
 		this.food = food;
 		this.available = available;
@@ -13,5 +13,6 @@ public class Post {
 		this.postId = postId;
 		this.timestamp = timestamp;
 		this.unit = unit;
+		this.userId = userId;
 	}
 }

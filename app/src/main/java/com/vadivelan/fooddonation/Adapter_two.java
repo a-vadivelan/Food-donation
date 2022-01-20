@@ -34,7 +34,7 @@ Adapter_two(List<ModelClass> active_food){
 
 	@Override
 	public void onBindViewHolder(@NonNull Adapter_two.ViewHolder holder, int position) {
-	holder.setData(active_food.get(position).getAddress(),active_food.get(position).getAvailable(),active_food.get(position).getCity(),active_food.get(position).getDistrict(),active_food.get(position).getFood(),active_food.get(position).getMobile(),active_food.get(position).getName(),active_food.get(position).getPostId(),active_food.get(position).getTime(),active_food.get(position).getUnit());
+	holder.setData(active_food.get(position).getAddress(),active_food.get(position).getAvailable(),active_food.get(position).getCity(),active_food.get(position).getDistrict(),active_food.get(position).getFood(),active_food.get(position).getMobile(),active_food.get(position).getName(),active_food.get(position).getPostId(),active_food.get(position).getTime(),active_food.get(position).getUnit(),active_food.get(position).getUserId());
 	}
 
 	@Override
@@ -48,7 +48,7 @@ Adapter_two(List<ModelClass> active_food){
 	FirebaseAuth auth = FirebaseAuth.getInstance();
 	FirebaseDatabase database = FirebaseDatabase.getInstance();
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
-	DatabaseReference ref = database.getReference().getRoot().child(auth.getCurrentUser().getUid());
+	DatabaseReference ref = database.getReference().getRoot().child("post").child(auth.getCurrentUser().getUid());
 		ViewHolder(View v){
 			super(v);
 			donar_name = v.findViewById(R.id.donor_name);
@@ -61,7 +61,7 @@ Adapter_two(List<ModelClass> active_food){
 			remove = v.findViewById(R.id.remove);
 		}
 
-		public void setData(String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit) {
+		public void setData(String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit,String userId) {
 			donar_name.setText(name);
 			food_name.setText(food);
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s ",available,unit));
@@ -78,6 +78,7 @@ Adapter_two(List<ModelClass> active_food){
 				edit.putExtra("available",available);
 				edit.putExtra("id",postId);
 				edit.putExtra("mobile",mobile);
+				edit.putExtra("userId",userId);
 				view.getContext().startActivity(edit);
 			});
 			remove.setOnClickListener((View v)->{

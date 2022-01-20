@@ -58,7 +58,7 @@ public class options extends AppCompatActivity {
 		active_food.setLayoutManager(linearLayoutManager);
 		auth = FirebaseAuth.getInstance();
 		database = FirebaseDatabase.getInstance();
-		ref = database.getReference().child(auth.getCurrentUser().getUid());
+		ref = database.getReference().getRoot().child("post").child(auth.getCurrentUser().getUid());
 		alert_builder = new AlertDialog.Builder(this);
 		alert_builder.setTitle(R.string.app_name)
 				.setCancelable(false)
@@ -97,10 +97,10 @@ public class options extends AppCompatActivity {
 							detail = new StringBuilder();
 							if ((System.currentTimeMillis() - Long.parseLong(String.valueOf(snapshot1.child("timestamp").getValue()))) < 86400000) {
 								for (DataSnapshot snapshot2 : snapshot1.getChildren())
-									detail.append(",").append(snapshot2.getValue());
-								string_detail = (detail.toString()).split(",");
+									detail.append("=").append(snapshot2.getValue());
+								string_detail = (detail.toString()).split("=");
 								//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit
-								available_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10]));
+								available_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10],string_detail[11]));
 							}
 						}
 					} catch(Exception e){

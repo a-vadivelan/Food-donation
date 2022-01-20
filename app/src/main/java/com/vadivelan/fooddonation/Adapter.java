@@ -9,12 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,7 +42,7 @@ List<ModelClass> food_list;
 
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-		holder.setData(food_list.get(position).getAddress(),food_list.get(position).getAvailable(),food_list.get(position).getCity(),food_list.get(position).getDistrict(),food_list.get(position).getFood(),food_list.get(position).getMobile(),food_list.get(position).getName(),food_list.get(position).getTime(),food_list.get(position).getUnit());
+		holder.setData(food_list.get(position).getAddress(),food_list.get(position).getAvailable(),food_list.get(position).getCity(),food_list.get(position).getDistrict(),food_list.get(position).getFood(),food_list.get(position).getMobile(),food_list.get(position).getName(),food_list.get(position).getPostId(),food_list.get(position).getTime(),food_list.get(position).getUnit(),food_list.get(position).getUserId());
 	}
 
 	@Override
@@ -47,8 +52,12 @@ List<ModelClass> food_list;
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 		TextView name,food,quantity,address,mobile,date_time;
-		ImageButton call;
+		ImageButton call,report;
 		Intent intent;
+		FirebaseAuth auth = FirebaseAuth.getInstance();
+		FirebaseDatabase database = FirebaseDatabase.getInstance();
+		DatabaseReference ref = database.getReference().getRoot().child("report");
+		DatabaseReference userRef,reportRef;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
 		ViewHolder(View v){
 			super(v);
@@ -59,8 +68,9 @@ List<ModelClass> food_list;
 			mobile = v.findViewById(R.id.cell);
 			date_time = v.findViewById(R.id.date);
 			call = v.findViewById(R.id.call);
+			report = v.findViewById(R.id.report);
 		}
-		public void setData(String donar_address,String available,String city,String district,String food_name,String donar_mobile,String donar_name,String time,String unit){
+		public void setData(String donar_address,String available,String city,String district,String food_name,String donar_mobile,String donar_name,String postId,String time,String unit,String userId){
 			name.setText(donar_name);
 			food.setText(food_name);
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s",available,unit));
@@ -79,6 +89,18 @@ List<ModelClass> food_list;
 					openSetting.setData(Uri.parse("package:"+v.getContext().getPackageName()));
 					v.getContext().startActivity(openSetting);
 				}
+			});
+			report.setOnClickListener((View vi)->{
+				PopupMenu popup = new PopupMenu(vi.getContext(),report);
+				popup.getMenuInflater().inflate(R.menu.report_menu, popup.getMenu());
+				popup.setOnMenuItemClickListener(item -> {
+					userRef = ref.child(userId);
+					reportRef = userRef.push();
+					reportRef.setValue(new Report(postId,(String) item.getTitle(),auth.getCurrentUser().getUid()));
+					Toast.makeText(vi.getContext(),"Thanks for Report!",Toast.LENGTH_SHORT).show();
+					return false;
+				});
+				popup.show();
 			});
 		}
 	}

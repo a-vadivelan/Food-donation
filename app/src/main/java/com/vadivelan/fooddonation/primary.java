@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,7 +61,7 @@ public class primary extends AppCompatActivity {
 		linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 		donated.setLayoutManager(linearLayoutManager);
 		database = FirebaseDatabase.getInstance();
-		ref = database.getReference().getRoot();
+		ref = database.getReference().getRoot().child("post");
 		donate.setOnClickListener((View v)->{
 			Intent intent = new Intent(this,donate.class);
 			startActivity(intent);
@@ -87,10 +88,12 @@ public class primary extends AppCompatActivity {
 							detail = new StringBuilder();
 							if((System.currentTimeMillis() - (Long.parseLong(String.valueOf(snapshot2.child("timestamp").getValue()))) < 86400000)) {
 								for (DataSnapshot snapshot3 : snapshot2.getChildren())
-									detail.append(",").append(snapshot3.getValue());
-								string_detail = (detail.toString()).split(",");
+									detail.append("=").append(snapshot3.getValue());
+								string_detail = (detail.toString()).split("=");
+								for(String test_string : string_detail)
+									Log.w("Post",test_string);
 								//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit
-								available_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10]));
+								available_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10],string_detail[11]));
 							}
 						}
 					}
@@ -146,10 +149,10 @@ public class primary extends AppCompatActivity {
 										detail = new StringBuilder();
 										if(String.valueOf(snapshot2.child("district").getValue()).equals(selected_district) && String.valueOf(snapshot2.child("city").getValue()).equals(selected_city) && (System.currentTimeMillis() - (Long.parseLong(String.valueOf(snapshot2.child("timestamp").getValue()))) < 86400000)) {
 											for(DataSnapshot snapshot3 : snapshot2.getChildren())
-												detail.append(",").append(snapshot3.getValue());
-											string_detail = (detail.toString()).split(",");
+												detail.append("=").append(snapshot3.getValue());
+											string_detail = (detail.toString()).split("=");
 											//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit
-												search_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10]));
+												search_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10],string_detail[11]));
 											}
 									}
 								}
