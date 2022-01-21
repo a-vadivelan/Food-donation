@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,10 +44,10 @@ Adapter_two(List<ModelClass> active_food){
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 	TextView donar_name,food_name,quantity,location,cell,date_and_time;
-	ImageButton edit,remove;
 	FirebaseAuth auth = FirebaseAuth.getInstance();
 	FirebaseDatabase database = FirebaseDatabase.getInstance();
-	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a",Locale.US);
+	View view;
 	DatabaseReference ref = database.getReference().getRoot().child("post").child(auth.getCurrentUser().getUid());
 		ViewHolder(View v){
 			super(v);
@@ -57,8 +57,7 @@ Adapter_two(List<ModelClass> active_food){
 			location = v.findViewById(R.id.location);
 			cell = v.findViewById(R.id.cell);
 			date_and_time = v.findViewById(R.id.date);
-			edit = v.findViewById(R.id.edit);
-			remove = v.findViewById(R.id.remove);
+			this.view = v;
 		}
 
 		public void setData(String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit,String userId) {
@@ -68,9 +67,31 @@ Adapter_two(List<ModelClass> active_food){
 			location.setText(String.format(Locale.ENGLISH,"%s, %s, %s",address,city,district));
 			cell.setText(mobile);
 			date_and_time.setText(simpleDateFormat.format(new Date(Long.parseLong(time))));
-			edit.setContentDescription(postId);
-			remove.setContentDescription(postId);
-			edit.setOnClickListener((View view)->{
+			view.setOnLongClickListener((View v)->{
+				PopupMenu popup = new PopupMenu(v.getContext(),v);
+				popup.getMenuInflater().inflate(R.menu.donar_options,popup.getMenu());
+				popup.setOnMenuItemClickListener(item -> {
+					if((item.getTitle()).equals("Edit")){
+						Intent edit = new Intent(v.getContext(),EditDonationActivity.class);
+						edit.putExtra("name",name);
+						edit.putExtra("food",food);
+						edit.putExtra("address",address);
+						edit.putExtra("available",available);
+						edit.putExtra("id",postId);
+						edit.putExtra("mobile",mobile);
+						edit.putExtra("userId",userId);
+						v.getContext().startActivity(edit);
+					} else {
+						ref.child(postId).removeValue();
+						((ViewGroup) v.getParent().getParent()).setVisibility(View.GONE);
+						Toast.makeText(v.getContext(),"Your post has been deleted",Toast.LENGTH_LONG).show();
+					}
+					return false;
+				});
+				popup.show();
+				return false;
+			});
+			/*edit.setOnClickListener((View view)->{
 				Intent edit = new Intent(view.getContext(),EditDonationActivity.class);
 				edit.putExtra("name",name);
 				edit.putExtra("food",food);
@@ -85,7 +106,7 @@ Adapter_two(List<ModelClass> active_food){
 				ref.child(String.valueOf(v.getContentDescription())).removeValue();
 				((ViewGroup) v.getParent().getParent()).setVisibility(View.GONE);
 				Toast.makeText(v.getContext(),"Your post has been deleted",Toast.LENGTH_LONG).show();
-			});
+			});*/
 		}
 	}
 }

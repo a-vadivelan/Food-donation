@@ -23,13 +23,18 @@
     <string name="submit">Submit</string>
     <string name="delete_ac">Delete Account</string>
     <string name="edit">Edit</string>
-    <string name="remove">Remove</string>
+    <string name="delete">Delete</string>
     <string name="address">Address</string>
     <string name="india_country_code">+91</string>
     <string name="edit_donation">Edit Donation</string>
     <string name="refresh">Refresh</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="auto_delete_msg">Your post will deleted after 24 hours</string>
+    <string name="call">Call</string>
+    <string name="report">Report</string>
+    <string name="fake">Fake</string>
+    <string name="inappropriate">Inappropriate</string>
+    <string name="drug">Drug</string>
     <string-array name="units">
         <item>Items</item>
         <item>Kilograms</item>

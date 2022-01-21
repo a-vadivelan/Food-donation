@@ -8,7 +8,6 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,13 +51,12 @@ List<ModelClass> food_list;
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 		TextView name,food,quantity,address,mobile,date_time;
-		ImageButton call,report;
-		Intent intent;
 		FirebaseAuth auth = FirebaseAuth.getInstance();
 		FirebaseDatabase database = FirebaseDatabase.getInstance();
 		DatabaseReference ref = database.getReference().getRoot().child("report");
 		DatabaseReference userRef,reportRef;
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a",Locale.US);
+		View view;
 		ViewHolder(View v){
 			super(v);
 			name = v.findViewById(R.id.donor_name);
@@ -67,8 +65,7 @@ List<ModelClass> food_list;
 			address = v.findViewById(R.id.location);
 			mobile = v.findViewById(R.id.cell);
 			date_time = v.findViewById(R.id.date);
-			call = v.findViewById(R.id.call);
-			report = v.findViewById(R.id.report);
+			this.view = v;
 		}
 		public void setData(String donar_address,String available,String city,String district,String food_name,String donar_mobile,String donar_name,String postId,String time,String unit,String userId){
 			name.setText(donar_name);
@@ -76,32 +73,42 @@ List<ModelClass> food_list;
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s",available,unit));
 			address.setText(String.format(Locale.ENGLISH,"%s, %s, %s",donar_address,city,district));
 			mobile.setText(donar_mobile);
-			call.setContentDescription(donar_mobile);
 			date_time.setText(simpleDateFormat.format(new Date(Long.parseLong(time))));
-			call.setOnClickListener((View v) -> {
-				intent = new Intent(Intent.ACTION_CALL);
-				intent.setData(Uri.parse("tel:"+donar_mobile));
-				if(ActivityCompat.checkSelfPermission(v.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
-					v.getContext().startActivity(intent);
-				else{
-					Toast.makeText(v.getContext(),"Please give Phone call permission", Toast.LENGTH_SHORT).show();
-					Intent openSetting = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-					openSetting.setData(Uri.parse("package:"+v.getContext().getPackageName()));
-					v.getContext().startActivity(openSetting);
+			view.setOnLongClickListener((View v) -> {
+			PopupMenu popup = new PopupMenu(v.getContext(),v);
+			popup.getMenuInflater().inflate(R.menu.post_options,popup.getMenu());
+			popup.setOnMenuItemClickListener(item -> {
+				setPopup(v,(String) item.getTitle(),donar_mobile,userId,postId);
+				return false;
+			});
+			popup.show();
+			return false;
+		});
+		}
+		public void setPopup(View vi,String item, String mobile,String userId,String postId){
+			if(item.equals("Call")){
+					Intent intent = new Intent(Intent.ACTION_CALL);
+					intent.setData(Uri.parse("tel:"+mobile));
+					if(ActivityCompat.checkSelfPermission(vi.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+						vi.getContext().startActivity(intent);
+					else{
+						Toast.makeText(vi.getContext(),"Please give Phone call permission", Toast.LENGTH_SHORT).show();
+						Intent openSetting = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+						openSetting.setData(Uri.parse("package:"+vi.getContext().getPackageName()));
+						vi.getContext().startActivity(openSetting);
+					}
+				} else {
+					PopupMenu popup1 = new PopupMenu(vi.getContext(),vi);
+					popup1.getMenuInflater().inflate(R.menu.report_menu, popup1.getMenu());
+					popup1.setOnMenuItemClickListener(item1 -> {
+						userRef = ref.child(userId);
+						reportRef = userRef.push();
+						reportRef.setValue(new Report(postId,(String) item1.getTitle(),auth.getCurrentUser().getUid()));
+						Toast.makeText(vi.getContext(),"Thanks for Report!",Toast.LENGTH_SHORT).show();
+						return false;
+					});
+					popup1.show();
 				}
-			});
-			report.setOnClickListener((View vi)->{
-				PopupMenu popup = new PopupMenu(vi.getContext(),report);
-				popup.getMenuInflater().inflate(R.menu.report_menu, popup.getMenu());
-				popup.setOnMenuItemClickListener(item -> {
-					userRef = ref.child(userId);
-					reportRef = userRef.push();
-					reportRef.setValue(new Report(postId,(String) item.getTitle(),auth.getCurrentUser().getUid()));
-					Toast.makeText(vi.getContext(),"Thanks for Report!",Toast.LENGTH_SHORT).show();
-					return false;
-				});
-				popup.show();
-			});
 		}
 	}
 }

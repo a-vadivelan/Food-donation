@@ -6,7 +6,8 @@
     android:layout_margin="2dp"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/round_corner"
-    android:padding="15dp">
+    android:padding="15dp"
+    android:id="@+id/donation">
     <TableRow>
         <TextView
             android:layout_width="wrap_content"
@@ -90,22 +91,5 @@
             android:layout_weight="1"
             android:id="@+id/cell"
             android:text="@string/cell"/>
-    </TableRow>
-    <TableRow>
-        <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/call"
-        android:layout_margin = "2dp"
-        android:src="@drawable/call_new"
-        android:background="@color/gray_white"/>
-        <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/report"
-        android:layout_margin="2dp"
-        android:gravity="center_horizontal"
-        android:src="@drawable/report"
-        android:background="@color/gray_white"/>
     </TableRow>
 </TableLayout>
