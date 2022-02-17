@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.ResultReceiver;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,7 +36,7 @@ public class primary extends AppCompatActivity {
 	DatabaseReference ref;
 	StringBuilder detail;
 	Spinner district,city;
-	List<ModelClass> search_list = new ArrayList<>(),available_list = new ArrayList<>();
+	List<ModelClass> city_list = new ArrayList<>(),available_list = new ArrayList<>(),district_list = new ArrayList<>();
 	String[] string_detail;
 	Adapter adapter;
 	String selected_district,selected_city;
@@ -45,6 +46,7 @@ public class primary extends AppCompatActivity {
 	AlertDialog.Builder builder;
 	AlertDialog alert;
 	locations cities = new locations();
+	ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,6 +62,7 @@ public class primary extends AppCompatActivity {
 		city = findViewById(R.id.city);
 		linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 		donated.setLayoutManager(linearLayoutManager);
+		registerReceiver(receiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 		database = FirebaseDatabase.getInstance();
 		ref = database.getReference().getRoot().child("post");
 		donate.setOnClickListener((View v)->{
@@ -90,8 +93,6 @@ public class primary extends AppCompatActivity {
 								for (DataSnapshot snapshot3 : snapshot2.getChildren())
 									detail.append("=").append(snapshot3.getValue());
 								string_detail = (detail.toString()).split("=");
-								for(String test_string : string_detail)
-									Log.w("Post",test_string);
 								//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit
 								available_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10],string_detail[11]));
 							}
@@ -127,6 +128,14 @@ public class primary extends AppCompatActivity {
 					select_city = cities.cities_list(selected_district,getApplicationContext());
 					adapter_two = new ArrayAdapter<>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,select_city);
 					city.setAdapter(adapter_two);
+					alert = builder.show();
+					district_list.clear();
+					for(int i=0;i<available_list.size();i++)
+						if(available_list.get(i).getDistrict().equals(selected_district))
+							district_list.add(new ModelClass(available_list.get(i).getAddress(),available_list.get(i).getAvailable(),available_list.get(i).getCity(),available_list.get(i).getDistrict(),available_list.get(i).getFood(),available_list.get(i).getMobile(),available_list.get(i).getName(),available_list.get(i).getPostId(),available_list.get(i).getTime(),available_list.get(i).getUnit(),available_list.get(i).getUserId()));
+						adapter = new Adapter(district_list);
+						donated.setAdapter(adapter);
+					alert.dismiss();
 				}
 			}
 
@@ -138,47 +147,23 @@ public class primary extends AppCompatActivity {
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				selected_city = (String) city.getSelectedItem();
 				if(!selected_city.equals("Select City")){
-					ref.addListenerForSingleValueEvent(new ValueEventListener() {
-						@Override
-						public void onDataChange(@NonNull DataSnapshot snapshot) {
-							alert = builder.show();
-							search_list.clear();
-							try{
-								for(DataSnapshot snapshot1 : snapshot.getChildren()){ //Getting user of root
-									for(DataSnapshot snapshot2 : snapshot1.getChildren()) { //Getting post of users
-										detail = new StringBuilder();
-										if(String.valueOf(snapshot2.child("district").getValue()).equals(selected_district) && String.valueOf(snapshot2.child("city").getValue()).equals(selected_city) && (System.currentTimeMillis() - (Long.parseLong(String.valueOf(snapshot2.child("timestamp").getValue()))) < 86400000)) {
-											for(DataSnapshot snapshot3 : snapshot2.getChildren())
-												detail.append("=").append(snapshot3.getValue());
-											string_detail = (detail.toString()).split("=");
-											//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit
-												search_list.add(new ModelClass(string_detail[1], string_detail[2], string_detail[3], string_detail[4], string_detail[5], string_detail[6], string_detail[7], string_detail[8], string_detail[9], string_detail[10],string_detail[11]));
-											}
-									}
-								}
-								adapter = new Adapter(search_list);
-								donated.setAdapter(adapter);
-							} catch(Exception e){
-								e.printStackTrace();
-							}
-							alert.dismiss();
-						}
-
-						@Override
-						public void onCancelled(@NonNull DatabaseError error) {
-							Toast.makeText(primary.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-						}
-					});
+					alert = builder.show();
+					city_list.clear();
+					for(int i=0;i<available_list.size();i++)
+						if(available_list.get(i).getCity().equals(selected_city))
+							city_list.add(new ModelClass(available_list.get(i).getAddress(),available_list.get(i).getAvailable(),available_list.get(i).getCity(),available_list.get(i).getDistrict(),available_list.get(i).getFood(),available_list.get(i).getMobile(),available_list.get(i).getName(),available_list.get(i).getPostId(),available_list.get(i).getTime(),available_list.get(i).getUnit(),available_list.get(i).getUserId()));
+						//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit, String userId
+					adapter = new Adapter(city_list);
+					donated.setAdapter(adapter);
+					alert.dismiss();
 				} else{
-					adapter = new Adapter(available_list);
+					adapter = new Adapter(district_list);
 					donated.setAdapter(adapter);
 				}
 			}
 
 			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-
-			}
+			public void onNothingSelected(AdapterView<?> parent) {}
 		});
 		refresh.setOnClickListener((View v)->{
 			Intent re = new Intent(this,primary.class);
@@ -186,5 +171,11 @@ public class primary extends AppCompatActivity {
 			finish();
 			overridePendingTransition(0,0);
 		});
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		unregisterReceiver(receiver);
 	}
 }

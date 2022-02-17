@@ -6,8 +6,10 @@ import androidx.core.app.ActivityCompat;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.Manifest;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -33,12 +35,14 @@ AlertDialog.Builder processing_dialog;
 AlertDialog alertDialog;
 String otp_number;
 PhoneAuthProvider.OnVerificationStateChangedCallbacks callback;
+ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_signin);
 		send_btn = findViewById(R.id.send_btn);
 		mobile_number = findViewById(R.id.mobile_number);
+		registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 		auth =FirebaseAuth.getInstance();
 		processing_dialog = new AlertDialog.Builder(this);
 		if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
@@ -94,4 +98,10 @@ PhoneAuthProvider.OnVerificationStateChangedCallbacks callback;
 
 		};
 	}
+	@Override
+	protected void onDestroy(){
+		super.onDestroy();
+		unregisterReceiver(receiver);
+	}
+
 }

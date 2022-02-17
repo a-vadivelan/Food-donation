@@ -1,5 +1,8 @@
 package com.vadivelan.fooddonation;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,6 +61,7 @@ List<ModelClass> food_list;
 		DatabaseReference userRef,reportRef;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a",Locale.US);
 		View view;
+		primary primary = new primary();
 		ViewHolder(View v){
 			super(v);
 			name = v.findViewById(R.id.donor_name);
@@ -87,28 +92,40 @@ List<ModelClass> food_list;
 		}
 		public void setPopup(View vi,String item, String mobile,String userId,String postId){
 			if(item.equals("Call")){
-					Intent intent = new Intent(Intent.ACTION_CALL);
-					intent.setData(Uri.parse("tel:"+mobile));
-					if(ActivityCompat.checkSelfPermission(vi.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
-						vi.getContext().startActivity(intent);
-					else{
-						Toast.makeText(vi.getContext(),"Please give Phone call permission", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(Intent.ACTION_CALL);
+				intent.setData(Uri.parse("tel:"+mobile));
+				if(ContextCompat.checkSelfPermission(vi.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+					vi.getContext().startActivity(intent);
+				else {
+					if(ActivityCompat.shouldShowRequestPermissionRationale((Activity)vi.getContext(),Manifest.permission.CALL_PHONE)){
+						new AlertDialog.Builder(vi.getContext())
+								.setTitle("Permission")
+								.setMessage("You need to give Phone call permission to call the donor from app.")
+								.setCancelable(true)
+								.setPositiveButton("OK", (dialog, which) -> ActivityCompat.requestPermissions((Activity) vi.getContext(), new String[]{Manifest.permission.CALL_PHONE}, 1))
+								.setNegativeButton("Cancel",(DialogInterface dialog, int which) ->dialog.dismiss()).create().show();
+					} else {
+						Toast.makeText(vi.getContext(),"Please give Phone call permission to make a call", Toast.LENGTH_LONG).show();
 						Intent openSetting = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
 						openSetting.setData(Uri.parse("package:"+vi.getContext().getPackageName()));
 						vi.getContext().startActivity(openSetting);
 					}
-				} else {
-					PopupMenu popup1 = new PopupMenu(vi.getContext(),vi);
-					popup1.getMenuInflater().inflate(R.menu.report_menu, popup1.getMenu());
-					popup1.setOnMenuItemClickListener(item1 -> {
-						userRef = ref.child(userId);
-						reportRef = userRef.push();
-						reportRef.setValue(new Report(postId,(String) item1.getTitle(),auth.getCurrentUser().getUid()));
-						Toast.makeText(vi.getContext(),"Thanks for Report!",Toast.LENGTH_SHORT).show();
-						return false;
-					});
-					popup1.show();
+
 				}
+				if(ContextCompat.checkSelfPermission(vi.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+					vi.getContext().startActivity(intent);
+			} else {
+				PopupMenu popup1 = new PopupMenu(vi.getContext(),vi);
+				popup1.getMenuInflater().inflate(R.menu.report_menu, popup1.getMenu());
+				popup1.setOnMenuItemClickListener(item1 -> {
+					userRef = ref.child(userId);
+					reportRef = userRef.push();
+					reportRef.setValue(new Report(postId,(String) item1.getTitle(),auth.getCurrentUser().getUid()));
+					Toast.makeText(vi.getContext(),"Thanks for Report!",Toast.LENGTH_SHORT).show();
+					return false;
+				});
+				popup1.show();
+			}
 		}
 	}
 }

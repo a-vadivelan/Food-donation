@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.ColorStateList;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +41,7 @@ boolean request_otp = false;
 int second=60;
 PhoneAuthProvider.OnVerificationStateChangedCallbacks callback;
 PhoneAuthProvider.ForceResendingToken token;
+ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +53,7 @@ PhoneAuthProvider.ForceResendingToken token;
 		OTP  = getIntent().getStringExtra("auth");
 		token = getIntent().getParcelableExtra("token");
 		otp_number.setText(String.format("OTP has been send to +91%s",getIntent().getStringExtra("mobile")));
+		registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 		processing_dialog = new AlertDialog.Builder(this);
 		processing_dialog.setMessage("Processing..").setCancelable(false).create();
 		verify.setOnClickListener((View v)->{
@@ -130,5 +134,10 @@ PhoneAuthProvider.ForceResendingToken token;
 	protected void onStart() {
 		super.onStart();
 		firebaseAuth = FirebaseAuth.getInstance();
+	}
+	@Override
+	protected void onDestroy(){
+		super.onDestroy();
+		unregisterReceiver(receiver);
 	}
 }

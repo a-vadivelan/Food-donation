@@ -6,6 +6,7 @@
     android:layout_margin="2dp"
     android:layout_gravity="center_horizontal"
     android:background="@drawable/round_corner"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
     android:padding="15dp">
     <TableRow>
         <TextView

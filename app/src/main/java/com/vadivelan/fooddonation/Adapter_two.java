@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class Adapter_two extends RecyclerView.Adapter<Adapter_two.ViewHolder>{
-List<ModelClass> active_food;
+static List<ModelClass> active_food;
 Adapter_two(List<ModelClass> active_food){
-	this.active_food=active_food;
+	Adapter_two.active_food =active_food;
 }
 	@NonNull
 	@Override
@@ -34,7 +34,7 @@ Adapter_two(List<ModelClass> active_food){
 
 	@Override
 	public void onBindViewHolder(@NonNull Adapter_two.ViewHolder holder, int position) {
-	holder.setData(active_food.get(position).getAddress(),active_food.get(position).getAvailable(),active_food.get(position).getCity(),active_food.get(position).getDistrict(),active_food.get(position).getFood(),active_food.get(position).getMobile(),active_food.get(position).getName(),active_food.get(position).getPostId(),active_food.get(position).getTime(),active_food.get(position).getUnit(),active_food.get(position).getUserId());
+	holder.setData(active_food.get(position).getAddress(),active_food.get(position).getAvailable(),active_food.get(position).getCity(),active_food.get(position).getDistrict(),active_food.get(position).getFood(),active_food.get(position).getMobile(),active_food.get(position).getName(),active_food.get(position).getPostId(),active_food.get(position).getTime(),active_food.get(position).getUnit(),active_food.get(position).getUserId(),position);
 	}
 
 	@Override
@@ -42,7 +42,7 @@ Adapter_two(List<ModelClass> active_food){
 		return active_food.size();
 	}
 
-	public static class ViewHolder extends RecyclerView.ViewHolder {
+	public class ViewHolder extends RecyclerView.ViewHolder {
 	TextView donar_name,food_name,quantity,location,cell,date_and_time;
 	FirebaseAuth auth = FirebaseAuth.getInstance();
 	FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -60,7 +60,7 @@ Adapter_two(List<ModelClass> active_food){
 			this.view = v;
 		}
 
-		public void setData(String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit,String userId) {
+		public void setData(String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit,String userId,int position) {
 			donar_name.setText(name);
 			food_name.setText(food);
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s ",available,unit));
@@ -82,8 +82,10 @@ Adapter_two(List<ModelClass> active_food){
 						edit.putExtra("userId",userId);
 						v.getContext().startActivity(edit);
 					} else {
+						active_food.remove(position);
 						ref.child(postId).removeValue();
-						((ViewGroup) v.getParent().getParent()).setVisibility(View.GONE);
+						notifyItemRemoved(position);
+						notifyItemRangeChanged(position,active_food.size());
 						Toast.makeText(v.getContext(),"Your post has been deleted",Toast.LENGTH_LONG).show();
 					}
 					return false;
@@ -91,22 +93,6 @@ Adapter_two(List<ModelClass> active_food){
 				popup.show();
 				return false;
 			});
-			/*edit.setOnClickListener((View view)->{
-				Intent edit = new Intent(view.getContext(),EditDonationActivity.class);
-				edit.putExtra("name",name);
-				edit.putExtra("food",food);
-				edit.putExtra("address",address);
-				edit.putExtra("available",available);
-				edit.putExtra("id",postId);
-				edit.putExtra("mobile",mobile);
-				edit.putExtra("userId",userId);
-				view.getContext().startActivity(edit);
-			});
-			remove.setOnClickListener((View v)->{
-				ref.child(String.valueOf(v.getContentDescription())).removeValue();
-				((ViewGroup) v.getParent().getParent()).setVisibility(View.GONE);
-				Toast.makeText(v.getContext(),"Your post has been deleted",Toast.LENGTH_LONG).show();
-			});*/
 		}
 	}
 }
