@@ -2,6 +2,7 @@ package com.vadivelan.fooddonation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.ResultReceiver;
@@ -47,6 +49,9 @@ public class primary extends AppCompatActivity {
 	AlertDialog alert;
 	locations cities = new locations();
 	ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
+	SharedPreferences preferences;
+	SharedPreferences.Editor editor;
+	boolean dontShowAgain;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,9 +65,11 @@ public class primary extends AppCompatActivity {
 		donated = findViewById(R.id.donated);
 		district = findViewById(R.id.district);
 		city = findViewById(R.id.city);
+		preferences = getPreferences(MODE_PRIVATE);
+		editor  = preferences.edit();
+		dontShowAgain = preferences.getBoolean("ShowAgainTaker",false);
 		linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
 		donated.setLayoutManager(linearLayoutManager);
-		registerReceiver(receiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 		database = FirebaseDatabase.getInstance();
 		ref = database.getReference().getRoot().child("post");
 		donate.setOnClickListener((View v)->{
@@ -111,6 +118,13 @@ public class primary extends AppCompatActivity {
 					Toast.makeText(primary.this,error.getMessage(), Toast.LENGTH_LONG).show();
 				}
 			});
+			if(!dontShowAgain)
+				builder.setMessage("Long press over the post, to make call and do report").setCancelable(true)
+						.setPositiveButton("Ok", (dialog, which) -> dialog.dismiss())
+						.setNegativeButton("Don't show again", (dialog, which) -> {
+							editor.putBoolean("ShowAgainTaker",true);
+							editor.commit();
+						}).create().show();
 		} catch(Exception e){
 			Toast.makeText(primary.this,e.getMessage(), Toast.LENGTH_LONG).show();
 		}
@@ -174,8 +188,18 @@ public class primary extends AppCompatActivity {
 	}
 
 	@Override
+	protected void onResume(){
+		super.onResume();
+		LocalBroadcastManager.getInstance(this).registerReceiver(receiver,new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+	}
+	@Override
+	protected void onPause(){
+		super.onPause();
+		LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+	}
+	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		unregisterReceiver(receiver);
+		LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
 	}
 }

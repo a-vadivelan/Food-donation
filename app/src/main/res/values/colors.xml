@@ -11,4 +11,5 @@
     <color name="background">#FF9800</color>
     <color name="custom_purple">#E3145B</color>
     <color name="custom_purple_trans">#40E3145B</color>
+    <color name="second_background">#FFF1A463</color>
 </resources>

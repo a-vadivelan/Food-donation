@@ -32,6 +32,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/round_corner"
+            android:backgroundTint="@color/purple_500"
+            app:backgroundTint="@color/purple_500"
             android:text="@string/delete_ac"
             android:id="@+id/delete_ac"
             android:textAllCaps="false"

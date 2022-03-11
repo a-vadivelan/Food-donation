@@ -93,6 +93,8 @@
         android:layout_height="wrap_content"
         android:text="@string/submit"
         android:background="@drawable/round_corner"
+        android:backgroundTint="@color/purple_500"
+        app:backgroundTint="@color/purple_500"
         android:layout_gravity="center_horizontal"
         android:textAllCaps="false"
         android:id="@+id/submit_donate"

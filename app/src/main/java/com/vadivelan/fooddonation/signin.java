@@ -91,6 +91,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 				intent.putExtra("auth",s);
 				intent.putExtra("mobile",otp_number);
 				intent.putExtra("token",forceResendingToken);
+				intent.putExtra("do","signin");
 				alertDialog.dismiss();
 				startActivity(intent);
 				finish();

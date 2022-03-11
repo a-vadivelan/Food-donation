@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,6 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -34,6 +41,10 @@ EditText otp;
 Button verify,resend;
 String OTP;
 FirebaseAuth firebaseAuth;
+DatabaseReference ref;
+FirebaseDatabase database;
+SharedPreferences preferences;
+SharedPreferences.Editor editor;
 AlertDialog.Builder processing_dialog;
 AlertDialog alertDialog;
 TextView otp_number;
@@ -56,6 +67,8 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 		registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 		processing_dialog = new AlertDialog.Builder(this);
 		processing_dialog.setMessage("Processing..").setCancelable(false).create();
+		preferences = getPreferences(MODE_PRIVATE);
+		editor  = preferences.edit();
 		verify.setOnClickListener((View v)->{
 			if(otp.getText().toString().isEmpty())
 				Toast.makeText(this, "Please enter OTP", Toast.LENGTH_SHORT).show();
@@ -64,8 +77,34 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 				PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(OTP,otp.getText().toString());
 				firebaseAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener((@NonNull Task<AuthResult> task)->{
 					if(task.isSuccessful()){
-						startActivity(new Intent(this,primary.class));
-						finish();
+						if(getIntent().getStringExtra("do").equals("delete")){
+							Log.w("2","Signin success");
+							firebaseAuth = FirebaseAuth.getInstance();
+							database = FirebaseDatabase.getInstance();
+							ref = database.getReference().getRoot().child("post").child(firebaseAuth.getCurrentUser().getUid());
+							preferences.edit().clear().commit();
+							ref.addListenerForSingleValueEvent(new ValueEventListener() {
+								@Override
+								public void onDataChange(@NonNull DataSnapshot snapshot) {
+									for (DataSnapshot snapshot1 : snapshot.getChildren())
+										ref.child(String.valueOf(snapshot1.getKey())).removeValue();
+									Log.w("3","Posts deleted");
+									firebaseAuth.getCurrentUser().delete()
+										.addOnSuccessListener((Void unused) -> {
+											Toast.makeText(otp.this, "Account successfully deleted", Toast.LENGTH_SHORT).show();
+											startActivity(new Intent(otp.this,MainActivity.class));
+											finish();
+										})
+										.addOnFailureListener((Exception e) -> Toast.makeText(otp.this, e.getMessage(), Toast.LENGTH_LONG).show());
+								}
+								@Override
+								public void onCancelled(@NonNull DatabaseError error) {
+								}
+							});
+						} else {
+							startActivity(new Intent(this, primary.class));
+							finish();
+						}
 					} else{
 						Toast.makeText(this, "Verification Failed", Toast.LENGTH_SHORT).show();
 					}
