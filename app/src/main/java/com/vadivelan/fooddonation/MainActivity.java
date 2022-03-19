@@ -23,7 +23,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 	protected void onStart(){
 		super.onStart();
 		FirebaseUser current_user = mAuth.getCurrentUser();
-		if(current_user==null)
+		if(current_user==null)  //Detects new user or already signed in
 			startActivity(new Intent(this,signin.class));
 		else
 			startActivity(new Intent(this,primary.class));

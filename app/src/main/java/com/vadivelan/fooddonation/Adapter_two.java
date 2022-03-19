@@ -43,7 +43,7 @@ Adapter_two(List<ModelClass> active_food){
 	}
 
 	public class ViewHolder extends RecyclerView.ViewHolder {
-	TextView donar_name,food_name,quantity,location,cell,date_and_time;
+	TextView donor_name,food_name,quantity,location,cell,date_and_time;
 	FirebaseAuth auth = FirebaseAuth.getInstance();
 	FirebaseDatabase database = FirebaseDatabase.getInstance();
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a",Locale.US);
@@ -51,7 +51,7 @@ Adapter_two(List<ModelClass> active_food){
 	DatabaseReference ref = database.getReference().getRoot().child("post").child(auth.getCurrentUser().getUid());
 		ViewHolder(View v){
 			super(v);
-			donar_name = v.findViewById(R.id.donor_name);
+			donor_name = v.findViewById(R.id.donor_name);
 			food_name = v.findViewById(R.id.food_name);
 			quantity = v.findViewById(R.id.available);
 			location = v.findViewById(R.id.location);
@@ -61,7 +61,7 @@ Adapter_two(List<ModelClass> active_food){
 		}
 
 		public void setData(String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit,String userId,int position) {
-			donar_name.setText(name);
+			donor_name.setText(name);
 			food_name.setText(food);
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s ",available,unit));
 			location.setText(String.format(Locale.ENGLISH,"%s, %s, %s",address,city,district));
@@ -73,7 +73,7 @@ Adapter_two(List<ModelClass> active_food){
 				popup.setOnMenuItemClickListener(item -> {
 					if((item.getTitle()).equals("Edit")){
 						Intent edit = new Intent(v.getContext(),EditDonationActivity.class);
-						edit.putExtra("name",name);
+						edit.putExtra("name",name);    //Gets current info of post for autofill while edit
 						edit.putExtra("food",food);
 						edit.putExtra("address",address);
 						edit.putExtra("available",available);

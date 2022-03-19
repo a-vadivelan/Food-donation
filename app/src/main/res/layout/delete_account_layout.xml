@@ -6,6 +6,7 @@
     android:orientation="vertical">
     <EditText android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:id="@+id/reauth_otp"
         android:hint="@string/enter_otp"
         android:inputType="number"/>

@@ -61,7 +61,7 @@ List<ModelClass> food_list;
 		DatabaseReference userRef,reportRef;
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a",Locale.US);
 		View view;
-		primary primary = new primary();
+
 		ViewHolder(View v){
 			super(v);
 			name = v.findViewById(R.id.donor_name);
@@ -72,18 +72,18 @@ List<ModelClass> food_list;
 			date_time = v.findViewById(R.id.date);
 			this.view = v;
 		}
-		public void setData(String donar_address,String available,String city,String district,String food_name,String donar_mobile,String donar_name,String postId,String time,String unit,String userId){
-			name.setText(donar_name);
+		public void setData(String donor_address,String available,String city,String district,String food_name,String donor_mobile,String donor_name,String postId,String time,String unit,String userId){
+			name.setText(donor_name);
 			food.setText(food_name);
 			quantity.setText(String.format(Locale.ENGLISH,"%s %s",available,unit));
-			address.setText(String.format(Locale.ENGLISH,"%s, %s, %s",donar_address,city,district));
-			mobile.setText(donar_mobile);
+			address.setText(String.format(Locale.ENGLISH,"%s, %s, %s",donor_address,city,district));
+			mobile.setText(donor_mobile);
 			date_time.setText(simpleDateFormat.format(new Date(Long.parseLong(time))));
 			view.setOnLongClickListener((View v) -> {
 			PopupMenu popup = new PopupMenu(v.getContext(),v);
 			popup.getMenuInflater().inflate(R.menu.post_options,popup.getMenu());
 			popup.setOnMenuItemClickListener(item -> {
-				setPopup(v,(String) item.getTitle(),donar_mobile,userId,postId);
+				setPopup(v,(String) item.getTitle(),donor_mobile,userId,postId);
 				return false;
 			});
 			popup.show();
@@ -91,20 +91,20 @@ List<ModelClass> food_list;
 		});
 		}
 		public void setPopup(View vi,String item, String mobile,String userId,String postId){
-			if(item.equals("Call")){
+			if(item.equals("Call")){    //Defines what to do when Call selected from Popup Menu
 				Intent intent = new Intent(Intent.ACTION_CALL);
 				intent.setData(Uri.parse("tel:"+mobile));
-				if(ContextCompat.checkSelfPermission(vi.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+				if(ContextCompat.checkSelfPermission(vi.getContext(),Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED)  //Check phone call permission
 					vi.getContext().startActivity(intent);
 				else {
-					if(ActivityCompat.shouldShowRequestPermissionRationale((Activity)vi.getContext(),Manifest.permission.CALL_PHONE)){
+					if(ActivityCompat.shouldShowRequestPermissionRationale((Activity)vi.getContext(),Manifest.permission.CALL_PHONE)){  //What if permission denied previously
 						new AlertDialog.Builder(vi.getContext())
 								.setTitle("Permission")
 								.setMessage("You need to give Phone call permission to call the donor from app.")
 								.setCancelable(true)
 								.setPositiveButton("OK", (dialog, which) -> ActivityCompat.requestPermissions((Activity) vi.getContext(), new String[]{Manifest.permission.CALL_PHONE}, 1))
 								.setNegativeButton("Cancel",(DialogInterface dialog, int which) ->dialog.dismiss()).create().show();
-					} else {
+					} else {    //What if user clicked Deny & Don't ask again
 						Toast.makeText(vi.getContext(),"Please give Phone call permission to make a call", Toast.LENGTH_LONG).show();
 						Intent openSetting = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
 						openSetting.setData(Uri.parse("package:"+vi.getContext().getPackageName()));

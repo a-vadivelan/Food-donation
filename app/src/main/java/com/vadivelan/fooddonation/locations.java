@@ -4,7 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 public class locations{
-	public String[] cities_list(String selected_district, Context context){
+	public String[] cities_list(String selected_district, Context context){ //Returns cites of selected district
 		String[] select_city = new String[]{};
 		switch (selected_district) {
 			case "Ariyalur":

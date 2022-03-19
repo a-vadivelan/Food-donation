@@ -45,7 +45,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 		registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 		auth =FirebaseAuth.getInstance();
 		processing_dialog = new AlertDialog.Builder(this);
-		if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
+		if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)              //Check permission for make call
 			ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE},1);
 		send_btn.setOnClickListener((View v)->{
 			otp_number=mobile_number.getText().toString();
@@ -82,6 +82,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 			@Override
 			public void onVerificationFailed(@NonNull FirebaseException e) {
 				Toast.makeText(signin.this, e.getMessage(),Toast.LENGTH_LONG).show();
+				alertDialog.cancel();
 			}
 
 			@Override
@@ -89,7 +90,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 				super.onCodeSent(s, forceResendingToken);
 				Intent intent = new Intent(signin.this,otp.class);
 				intent.putExtra("auth",s);
-				intent.putExtra("mobile",otp_number);
+				intent.putExtra("mobile","+91"+otp_number);
 				intent.putExtra("token",forceResendingToken);
 				intent.putExtra("do","signin");
 				alertDialog.dismiss();

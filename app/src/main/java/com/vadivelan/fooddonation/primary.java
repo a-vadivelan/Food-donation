@@ -96,7 +96,7 @@ public class primary extends AppCompatActivity {
 					for(DataSnapshot snapshot1 : snapshot.getChildren()){ //Getting user of root
 						for(DataSnapshot snapshot2 : snapshot1.getChildren()) { //Getting post of users
 							detail = new StringBuilder();
-							if((System.currentTimeMillis() - (Long.parseLong(String.valueOf(snapshot2.child("timestamp").getValue()))) < 86400000)) {
+							if((System.currentTimeMillis() - (Long.parseLong(String.valueOf(snapshot2.child("timestamp").getValue()))) < 86400000)) {   //Filter post older than 1 day
 								for (DataSnapshot snapshot3 : snapshot2.getChildren())
 									detail.append("=").append(snapshot3.getValue());
 								string_detail = (detail.toString()).split("=");
@@ -139,12 +139,12 @@ public class primary extends AppCompatActivity {
 				}
 				else {
 					city.setVisibility(View.VISIBLE);
-					select_city = cities.cities_list(selected_district,getApplicationContext());
+					select_city = cities.cities_list(selected_district,getApplicationContext());    //Get the cities list of selected district
 					adapter_two = new ArrayAdapter<>(getApplicationContext(),R.layout.support_simple_spinner_dropdown_item,select_city);
 					city.setAdapter(adapter_two);
 					alert = builder.show();
 					district_list.clear();
-					for(int i=0;i<available_list.size();i++)
+					for(int i=0;i<available_list.size();i++)    //Get all post of selected district
 						if(available_list.get(i).getDistrict().equals(selected_district))
 							district_list.add(new ModelClass(available_list.get(i).getAddress(),available_list.get(i).getAvailable(),available_list.get(i).getCity(),available_list.get(i).getDistrict(),available_list.get(i).getFood(),available_list.get(i).getMobile(),available_list.get(i).getName(),available_list.get(i).getPostId(),available_list.get(i).getTime(),available_list.get(i).getUnit(),available_list.get(i).getUserId()));
 						adapter = new Adapter(district_list);
@@ -163,7 +163,7 @@ public class primary extends AppCompatActivity {
 				if(!selected_city.equals("Select City")){
 					alert = builder.show();
 					city_list.clear();
-					for(int i=0;i<available_list.size();i++)
+					for(int i=0;i<available_list.size();i++)    //Get all post of selected city
 						if(available_list.get(i).getCity().equals(selected_city))
 							city_list.add(new ModelClass(available_list.get(i).getAddress(),available_list.get(i).getAvailable(),available_list.get(i).getCity(),available_list.get(i).getDistrict(),available_list.get(i).getFood(),available_list.get(i).getMobile(),available_list.get(i).getName(),available_list.get(i).getPostId(),available_list.get(i).getTime(),available_list.get(i).getUnit(),available_list.get(i).getUserId()));
 						//String address, String available, String city, String district, String food, String mobile, String name, String postId, String time, String unit, String userId

@@ -3,7 +3,6 @@ package com.vadivelan.fooddonation;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -105,12 +104,10 @@ locations cities = new locations();
 				else {
 					//String name, String food, String available, String district, String city, String address, String mobile
 					userRef = ref.child(Uid);
-					Log.i("User",""+userRef);
-					postRef = userRef.push();
+					postRef = userRef.push();   //Get post id
 					postRef.setValue(new Post(filled_address, filled_available, filled_city, filled_district, filled_food, filled_mobile, filled_name, null,timestamp,filled_unit,Uid));
 					postIdUpdate.put("postId", postRef.getKey());
 					postRef.updateChildren(postIdUpdate);
-					Log.i("Post",postRef.getKey());
 					finish();
 				}
 			} catch (Exception e) {

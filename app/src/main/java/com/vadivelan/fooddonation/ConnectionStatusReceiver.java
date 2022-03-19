@@ -1,7 +1,5 @@
 package com.vadivelan.fooddonation;
 
-import static android.app.ProgressDialog.show;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,8 +8,6 @@ import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
 import android.os.Build;
 import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 
 public class ConnectionStatusReceiver extends BroadcastReceiver {
 	boolean isConnected,firstTime = true;

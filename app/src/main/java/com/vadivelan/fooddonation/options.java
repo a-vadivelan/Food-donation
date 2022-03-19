@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.ResultReceiver;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ImageButton;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -36,7 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class options extends AppCompatActivity {
@@ -95,7 +92,7 @@ public class options extends AppCompatActivity {
 					try {
 						for (DataSnapshot snapshot1 : snapshot.getChildren()) { //Getting post of users
 							detail = new StringBuilder();
-							if ((System.currentTimeMillis() - Long.parseLong(String.valueOf(snapshot1.child("timestamp").getValue()))) < 86400000) {
+							if ((System.currentTimeMillis() - Long.parseLong(String.valueOf(snapshot1.child("timestamp").getValue()))) < 86400000) {    //Filter post older than 1 day
 								for (DataSnapshot snapshot2 : snapshot1.getChildren())
 									detail.append("=").append(snapshot2.getValue());
 								string_detail = (detail.toString()).split("=");
@@ -141,18 +138,15 @@ public class options extends AppCompatActivity {
 						Toast.makeText(options.this,"Checking...",Toast.LENGTH_LONG).show();
 						try{
 							PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(send_otp, otp.getText().toString());
-							auth.signOut();
-							Log.w("1","Ready to signin");
+							auth.signOut(); //Google Firebase requires recent login to do sensitive operations. So do sign out and sign automatically for user
 							auth.signInWithCredential(phoneAuthCredential).addOnCompleteListener((@NonNull Task<AuthResult> task)-> {
 								if (task.isSuccessful()) {
-									Log.w("2","Signin success");
 									preferences.edit().clear().commit();
 									ref.addListenerForSingleValueEvent(new ValueEventListener() {
 										@Override
 										public void onDataChange(@NonNull DataSnapshot snapshot) {
-											for (DataSnapshot snapshot1 : snapshot.getChildren())
+											for (DataSnapshot snapshot1 : snapshot.getChildren())   //Delete all post of user
 												ref.child(String.valueOf(snapshot1.getKey())).removeValue();
-											Log.w("3","Posts deleted");
 											auth.getCurrentUser().delete()
 												.addOnSuccessListener((Void unused) -> {
 													Toast.makeText(options.this, "Account successfully deleted", Toast.LENGTH_SHORT).show();
@@ -168,7 +162,7 @@ public class options extends AppCompatActivity {
 									});
 								} else {
 									Toast.makeText(this, "Verification Failed", Toast.LENGTH_SHORT).show();
-									Intent goToDelete = new Intent(options.this,otp.class);
+									Intent goToDelete = new Intent(options.this,otp.class); //For resend otp with timer, going to otp activity
 									goToDelete.putExtra("do","delete");
 									goToDelete.putExtra("auth",send_otp);
 									goToDelete.putExtra("token",token);

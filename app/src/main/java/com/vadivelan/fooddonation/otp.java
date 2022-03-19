@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,7 +62,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 		otp_number = findViewById(R.id.otp_number);
 		OTP  = getIntent().getStringExtra("auth");
 		token = getIntent().getParcelableExtra("token");
-		otp_number.setText(String.format("OTP has been send to +91%s",getIntent().getStringExtra("mobile")));
+		otp_number.setText(String.format("OTP has been send to %s",getIntent().getStringExtra("mobile")));
 		registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 		processing_dialog = new AlertDialog.Builder(this);
 		processing_dialog.setMessage("Processing..").setCancelable(false).create();
@@ -77,8 +76,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 				PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(OTP,otp.getText().toString());
 				firebaseAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener((@NonNull Task<AuthResult> task)->{
 					if(task.isSuccessful()){
-						if(getIntent().getStringExtra("do").equals("delete")){
-							Log.w("2","Signin success");
+						if(getIntent().getStringExtra("do").equals("delete")){  //Defines what to do when otp verification for delete account
 							firebaseAuth = FirebaseAuth.getInstance();
 							database = FirebaseDatabase.getInstance();
 							ref = database.getReference().getRoot().child("post").child(firebaseAuth.getCurrentUser().getUid());
@@ -86,10 +84,9 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 							ref.addListenerForSingleValueEvent(new ValueEventListener() {
 								@Override
 								public void onDataChange(@NonNull DataSnapshot snapshot) {
-									for (DataSnapshot snapshot1 : snapshot.getChildren())
+									for (DataSnapshot snapshot1 : snapshot.getChildren())   //Delete all posts
 										ref.child(String.valueOf(snapshot1.getKey())).removeValue();
-									Log.w("3","Posts deleted");
-									firebaseAuth.getCurrentUser().delete()
+									firebaseAuth.getCurrentUser().delete()  //Delete user account
 										.addOnSuccessListener((Void unused) -> {
 											Toast.makeText(otp.this, "Account successfully deleted", Toast.LENGTH_SHORT).show();
 											startActivity(new Intent(otp.this,MainActivity.class));
@@ -114,7 +111,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 		});
 		resend.setOnClickListener((View v)-> {
 			PhoneAuthOptions authOptions = PhoneAuthOptions.newBuilder(firebaseAuth)
-						.setPhoneNumber("+91"+getIntent().getStringExtra("mobile"))
+						.setPhoneNumber(getIntent().getStringExtra("mobile"))
 						.setTimeout(60L, TimeUnit.SECONDS)
 						.setActivity(this)
 						.setCallbacks(callback)
@@ -153,7 +150,7 @@ ConnectionStatusReceiver receiver = new ConnectionStatusReceiver();
 	}
 
 	public void resend_timer(){
-		runOnUiThread(()->{
+		runOnUiThread(()->{  //Active and Disable Resend OTP button
 			if(!request_otp)
 				if(second==0){
 					resend.setClickable(true);
